@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {LupoService} from "../lupo.service";
+import {StorageService} from "../storage.service";
 declare let $: any;
 @Component({
   selector: 'app-subject-table',
   templateUrl: './subject-table.component.html',
   styleUrls: ['./subject-table.component.scss']
 })
-export class SubjectTableComponent implements OnInit {
+export class SubjectTableComponent implements OnInit, OnChanges {
 
-  constructor(private lupoService: LupoService) { }
-  subjectCount = 1
+  constructor(private lupoService: LupoService, private storageService: StorageService) { }
+  subjectCount = 1;
 
   ngOnInit() {
     $(function () {
@@ -20,7 +21,7 @@ export class SubjectTableComponent implements OnInit {
 
   initEventListeners():void {
     for(var i = 0; i < this.subjectCount; i++) {
-      
+
     }
   }
 
@@ -31,5 +32,14 @@ export class SubjectTableComponent implements OnInit {
 
   setQ22withABI(abifachno):void {
     console.log(abifachno);
+  }
+
+  public persistDatabase() {
+    console.log("persist");
+    this.storageService.put('adb', this.lupoService.abpDatabase);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
   }
 }

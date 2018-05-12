@@ -1,4 +1,4 @@
-<div ngClass="subjecttable-wrapper">
+<div ngClass="subjecttable-wrapper" (change)="persistDatabase()">
   <table class="centered">
     <thead>
     <tr>
@@ -64,7 +64,7 @@
       </td>
       <td>
         <select [(ngModel)]="schuelerFach.AbiturFach">
-          <option value="0" selected> </option>
+          <option value="" selected></option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
