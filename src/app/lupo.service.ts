@@ -16,8 +16,8 @@ export class LupoService {
   public hasData: boolean = false;
 
   constructor(private storageService: StorageService) {
-    if (storageService.has('abp')) {
-      this.setDatabase(storageService.get('abp'));
+    if (storageService.has('adb')) {
+      this.setDatabase(storageService.get('adb'));
     }
   }
 
@@ -57,5 +57,16 @@ export class LupoService {
 
     this.hasData = true;
     $('#modal-upload').modal('close');
+  }
+
+  public resetDatabase(): void {
+    this.storageService.remove('adb');
+    this.hasData = false;
+    this.abpDatabase = null;
+    $('#modal-upload').modal('open');
+  }
+
+  public updateValues(): void {
+
   }
 }

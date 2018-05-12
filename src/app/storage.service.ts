@@ -1,4 +1,5 @@
 import {Injectable} from "@angular/core";
+import {parse, stringify} from "circular-json";
 
 @Injectable()
 export class StorageService {
@@ -6,11 +7,11 @@ export class StorageService {
   constructor() { }
 
   put(key: string, value: any): void {
-    localStorage.setItem(key, JSON.stringify(value));
+    localStorage.setItem(key, stringify(value));
   }
 
   get(key: string): any {
-    return JSON.parse(localStorage.getItem(key));
+    return parse(localStorage.getItem(key));
   }
 
   has(key: string): boolean {

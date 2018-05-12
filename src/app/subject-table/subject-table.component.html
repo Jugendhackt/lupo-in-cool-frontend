@@ -1,77 +1,80 @@
-<div ngClass="subjecttable-wrapper" (change)="persistDatabase()">
-  <table class="centered">
-    <thead>
-    <tr>
-      <th style="width: 25%" class="thick-border-right">Fach</th>
-      <th style="width: 10%">EF.1</th>
-      <th style="width: 10%" class="thick-border-right">EF.2</th>
-      <th style="width: 10%">Q1.1</th>
-      <th style="width: 10%">Q1.2</th>
-      <th style="width: 10%">Q2.1</th>
-      <th style="width: 10%" class="thick-border-right">Q2.2</th>
-      <th>Abifächer</th>
-    </tr>
-    </thead>
+<form>
+  <div ngClass="subjecttable-wrapper">
+    <table class="centered">
+      <thead>
+      <tr>
+        <th style="width: 25%" class="thick-border-right">Fach</th>
+        <th style="width: 10%">EF.1</th>
+        <th style="width: 10%" class="thick-border-right">EF.2</th>
+        <th style="width: 10%">Q1.1</th>
+        <th style="width: 10%">Q1.2</th>
+        <th style="width: 10%">Q2.1</th>
+        <th style="width: 10%" class="thick-border-right">Q2.2</th>
+        <th>Abifächer</th>
+      </tr>
+      </thead>
 
-    <tbody>
-    <tr *ngFor="let schuelerFach of lupoService.abpDatabase.ABP_SchuelerFaecher | orderBy: 'Fach.Sortierung'">
-      <td class="thick-border-right">{{schuelerFach.Fach.Bezeichnung}}</td>
-      <td>
-        <select [(ngModel)]="schuelerFach.Kursart_E1">
-          <option value="" disabled selected> </option>
-          <option value="M">M</option>
-          <option value="S">S</option>
-        </select>
-      </td>
-      <td class="thick-border-right">
-        <select [(ngModel)]="schuelerFach.Kursart_E2">
-          <option value="" disabled selected> </option>
-          <option value="M">M</option>
-          <option value="S">S</option>
-        </select>
-      </td>
-      <td>
-        <select [(ngModel)]="schuelerFach.Kursart_Q1">
-          <option value="" disabled selected> </option>
-          <option value="M">M</option>
-          <option value="S">S</option>
-          <option value="LK">LK</option>
-        </select>
-      </td>
-      <td>
-        <select [(ngModel)]="schuelerFach.Kursart_Q2">
-          <option value="" disabled selected> </option>
-          <option value="M">M</option>
-          <option value="S">S</option>
-          <option value="LK">LK</option>
-        </select>
-      </td>
-      <td>
-        <select [(ngModel)]="schuelerFach.Kursart_Q3">
-          <option value="" disabled selected> </option>
-          <option value="M">M</option>
-          <option value="S">S</option>
-          <option value="LK">LK</option>
-        </select>
-      </td>
-      <td class="thick-border-right">
-        <select [(ngModel)]="schuelerFach.Kursart_Q4">
-          <option value="" disabled selected> </option>
-          <option value="M">M</option>
-          <option value="S">S</option>
-          <option value="LK">LK</option>
-        </select>
-      </td>
-      <td>
-        <select [(ngModel)]="schuelerFach.AbiturFach">
-          <option value="" selected></option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+      <tbody>
+      <tr *ngFor="let schuelerFach of lupoService.abpDatabase.ABP_SchuelerFaecher | orderBy: 'Fach.Sortierung'">
+        <td class="thick-border-right">{{schuelerFach.Fach.Bezeichnung}}</td>
+        <td>
+          <select [ngModel]="schuelerFach.Kursart_E1" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E1', $event)" name="kursart-e1-{{schuelerFach.ID}}">
+            <option value="" selected></option>
+            <option value="M">M</option>
+            <option value="S">S</option>
+          </select>
+        </td>
+        <td class="thick-border-right">
+          <select [(ngModel)]="schuelerFach.Kursart_E2" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E1', $event)" name="kursart-e2-{{schuelerFach.ID}}">
+            <option value="" selected></option>
+            <option value="M">M</option>
+            <option value="S">S</option>
+          </select>
+        </td>
+        <td>
+          <select [(ngModel)]="schuelerFach.Kursart_Q1" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E1', $event)" name="kursart-q1-{{schuelerFach.ID}}">
+            <option value="" selected></option>
+            <option value="M">M</option>
+            <option value="S">S</option>
+            <option value="LK">LK</option>
+            <option value="ZK">ZK</option>
+          </select>
+        </td>
+        <td>
+          <select [(ngModel)]="schuelerFach.Kursart_Q2" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E1', $event)" name="kursart-q2-{{schuelerFach.ID}}">
+            <option value="" selected></option>
+            <option value="M">M</option>
+            <option value="S">S</option>
+            <option value="LK">LK</option>
+          </select>
+        </td>
+        <td>
+          <select [(ngModel)]="schuelerFach.Kursart_Q3" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E1', $event)" name="kursart-q3-{{schuelerFach.ID}}">
+            <option value="" selected></option>
+            <option value="M">M</option>
+            <option value="S">S</option>
+            <option value="LK">LK</option>
+          </select>
+        </td>
+        <td class="thick-border-right">
+          <select [(ngModel)]="schuelerFach.Kursart_Q4" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E1', $event)" name="kursart-q4-{{schuelerFach.ID}}">
+            <option value="" selected></option>
+            <option value="M">M</option>
+            <option value="S">S</option>
+            <option value="LK">LK</option>
+          </select>
+        </td>
+        <td>
+          <select [(ngModel)]="schuelerFach.AbiturFach" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E1', $event)" name="abifach-{{schuelerFach.ID}}">
+            <option value="" selected></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</form>

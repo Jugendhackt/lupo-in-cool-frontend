@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LupoService} from '../lupo.service';
 declare let $: any;
+
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -8,7 +9,7 @@ declare let $: any;
 })
 export class FooterComponent implements OnInit {
 
-  constructor(private lupoService: LupoService) { }
+constructor(public lupoService: LupoService) { }
 
   ngOnInit() {
     let anzE1 = 0;
