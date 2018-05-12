@@ -1,16 +1,22 @@
 <div id="footerbar">
   <table>
     <tbody>
-    <tr id="footer-stunden-row">
-      <td class="thick-border-right" width="24.8%">Stunden</td>
-      <td width="9.9%"><app-footer-stunden-color [stundenzahl]="lupoService.abpDatabase.ABP_Schueler[0].AnzK_E1"></app-footer-stunden-color></td>
-      <td width="9.9%"><app-footer-stunden-color [stundenzahl]="lupoService.abpDatabase.ABP_Schueler[0].AnzK_E2"></app-footer-stunden-color></td>
-      <td width="9.9%"><app-footer-stunden-color [stundenzahl]="lupoService.abpDatabase.ABP_Schueler[0].AnzK_Q1"></app-footer-stunden-color></td>
-      <td width="9.9%"><app-footer-stunden-color [stundenzahl]="lupoService.abpDatabase.ABP_Schueler[0].AnzK_Q2"></app-footer-stunden-color></td>
-      <td width="9.9%"><app-footer-stunden-color [stundenzahl]="lupoService.abpDatabase.ABP_Schueler[0].AnzK_Q3"></app-footer-stunden-color></td>
-      <td width="9.9%"><app-footer-stunden-color [stundenzahl]="lupoService.abpDatabase.ABP_Schueler[0].AnzK_Q4"></app-footer-stunden-color></td>
-      <td></td>
-    </tr>
+      <tr class="footer-stunden-row">
+        <td class="thick-border-right" width="24.8%">Stunden</td>
+        <td width="9.9%"><app-footer-stunden-color [stundenzahl]="lupoService.abpDatabase.ABP_Schueler[0].AnzS_E1"></app-footer-stunden-color></td>
+        <td width="9.9%"><app-footer-stunden-color [stundenzahl]="lupoService.abpDatabase.ABP_Schueler[0].AnzS_E2"></app-footer-stunden-color></td>
+        <td width="9.9%"><app-footer-stunden-color [stundenzahl]="lupoService.abpDatabase.ABP_Schueler[0].AnzS_Q1"></app-footer-stunden-color></td>
+        <td width="9.9%"><app-footer-stunden-color [stundenzahl]="lupoService.abpDatabase.ABP_Schueler[0].AnzS_Q2"></app-footer-stunden-color></td>
+        <td width="9.9%"><app-footer-stunden-color [stundenzahl]="lupoService.abpDatabase.ABP_Schueler[0].AnzS_Q3"></app-footer-stunden-color></td>
+        <td width="9.9%"><app-footer-stunden-color [stundenzahl]="lupoService.abpDatabase.ABP_Schueler[0].AnzS_Q4"></app-footer-stunden-color></td>
+        <td></td>
+      </tr>
+      <tr class="footer-stunden-row">
+        <td class="thick-border-right" width="24.8%">Stunden-Durchschnitt</td>
+        <td width="19.8%" colspan="2"><app-footer-stunden-color [stundenzahl]="(lupoService.abpDatabase.ABP_Schueler[0].AnzS_E1 + lupoService.abpDatabase.ABP_Schueler[0].AnzS_E2) / 2"></app-footer-stunden-color></td>
+        <td width="39.6%" colspan="4"><app-footer-stunden-color [stundenzahl]="(lupoService.abpDatabase.ABP_Schueler[0].AnzS_Q1 + lupoService.abpDatabase.ABP_Schueler[0].AnzS_Q2 + lupoService.abpDatabase.ABP_Schueler[0].AnzS_Q3 + lupoService.abpDatabase.ABP_Schueler[0].AnzS_Q4) / 4"></app-footer-stunden-color></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
   <div class="container" id="wrapper-footer-buttons">

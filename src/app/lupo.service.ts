@@ -87,11 +87,11 @@ export class LupoService {
   }
   public updateValues(): void {
     const faecher = this.abpDatabase.ABP_SchuelerFaecher;
-    this.abpDatabase.ABP_Schueler[0].AnzK_E1 = this.calcValues(faecher, 'E1');
-    this.abpDatabase.ABP_Schueler[0].AnzK_E2 = this.calcValues(faecher, 'E2');
-    this.abpDatabase.ABP_Schueler[0].AnzK_Q1 = this.calcValues(faecher, 'Q1');
-    this.abpDatabase.ABP_Schueler[0].AnzK_Q2 = this.calcValues(faecher, 'Q2');
-    this.abpDatabase.ABP_Schueler[0].AnzK_Q3 = this.calcValues(faecher, 'Q3');
-    this.abpDatabase.ABP_Schueler[0].AnzK_Q4 = this.calcValues(faecher, 'Q4');
+    this.abpDatabase.ABP_Schueler[0].AnzS_E1 = this.calcValues(faecher, 'E1');
+    this.abpDatabase.ABP_Schueler[0].AnzS_E2 = this.calcValues(faecher, 'E2');
+    this.abpDatabase.ABP_Schueler[0].AnzS_Q1 = this.calcValues(faecher, 'Q1');
+    this.abpDatabase.ABP_Schueler[0].AnzS_Q2 = this.calcValues(faecher, 'Q2');
+    this.abpDatabase.ABP_Schueler[0].AnzS_Q3 = this.calcValues(faecher, 'Q3');
+    this.abpDatabase.ABP_Schueler[0].AnzS_Q4 = this.calcValues(faecher, 'Q4');
   }
 }

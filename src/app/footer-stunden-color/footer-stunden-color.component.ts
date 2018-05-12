@@ -22,7 +22,7 @@ export class FooterStundenColorComponent implements OnInit, OnChanges {
     if (this.stundenzahl < 28) {
       // red
       return '#FB2B11';
-    } else if (this.stundenzahl < 34) {
+    } else if (this.stundenzahl < 33) {
       // gelb
       return '#fff200 ';
     } else if (this.stundenzahl < 37) {
