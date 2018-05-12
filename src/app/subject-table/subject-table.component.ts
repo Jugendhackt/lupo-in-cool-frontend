@@ -40,7 +40,7 @@ export class SubjectTableComponent implements OnInit {
       }
     }
     else if (property == "Kursart_Q1") {  //Q1.1 geklickt
-      if (schuelerFach.Kursart_Q2 == "" && schuelerFach.Kursart_Q3 == "" && schuelerFach.Kursart_Q4 == "") {  //Rest der Q-Phase leer
+      if ((schuelerFach.Kursart_Q2 == "" && schuelerFach.Kursart_Q3 == "" && schuelerFach.Kursart_Q4 == "") || (schuelerFach.Kursart_Q2 && schuelerFach.Kursart_Q3)) {  //Rest der Q-Phase leer
         if (schuelerFach.Kursart_Q1 == "M") { //Auf Mündlich geändert
           schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
           schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
@@ -56,18 +56,26 @@ export class SubjectTableComponent implements OnInit {
           schuelerFach.Kursart_Q3 = "";
           schuelerFach.Kursart_Q4 = "";
         }
-        if (schuelerFach.Kursart_Q1 == "LK") { //Auf Leistungskurs geändert
+        else if (schuelerFach.Kursart_Q1 == "LK") { //Auf Leistungskurs geändert
           schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
           schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
           schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
         }
+        else if (schuelerFach.Kursart_Q1 == "") { //Auf Leistungskurs geändert
+          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
+        }
+      }
+      else if(schuelerFach.Kursart_Q2 == "" && (schuelerFach.Kursart_Q3 != "" || schuelerFach.Kursart_Q4 != "")) {
+        schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;        
       }
     }
     else if (property == "Kursart_Q2") {  //Q1.2 geklickt
 
     }
     else if (property == "Kursart_Q3") {  //Q2.1 geklickt
-
+      schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q3;
     }
     else if (property == "Kursart_Q4") {  //Q2.2 geklickt
 
