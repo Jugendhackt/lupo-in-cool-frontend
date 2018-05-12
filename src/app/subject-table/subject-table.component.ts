@@ -38,46 +38,43 @@ export class SubjectTableComponent implements OnInit {
       if (schuelerFach.Kursart_Q2 == "" && schuelerFach.Kursart_Q3 == "" && schuelerFach.Kursart_Q4 == "") {
 
       }
-      else if (property === "Kursart_Q1") {  //Q1.1 geklickt
-        if (schuelerFach.Kursart_Q2 == "" && schuelerFach.Kursart_Q3 == "" && schuelerFach.Kursart_Q4 == "") {  //Rest der Q-Phase leer
-          if (schuelerFach.Kursart_Q1 == "M") { //Auf Mündlich geändert
-            schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
-            schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
-            schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
-          }
-          else if (schuelerFach.Kursart_Q1 == "S") { //Auf Schriftlich geändert
-            schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
-            schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
-            schuelerFach.Kursart_Q4 = "M";
-          }
-          else if (schuelerFach.Kursart_Q1 == "ZK") { //Auf Zusatzkurs geändert
-            schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
-            schuelerFach.Kursart_Q3 = "";
-            schuelerFach.Kursart_Q4 = "";
-          }
-          if (schuelerFach.Kursart_Q1 == "LK") { //Auf Leistungskurs geändert
-            schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
-            schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
-            schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
-          }
+    }
+    else if (property == "Kursart_Q1") {  //Q1.1 geklickt
+      if (schuelerFach.Kursart_Q2 == "" && schuelerFach.Kursart_Q3 == "" && schuelerFach.Kursart_Q4 == "") {  //Rest der Q-Phase leer
+        if (schuelerFach.Kursart_Q1 == "M") { //Auf Mündlich geändert
+          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
+        }
+        else if (schuelerFach.Kursart_Q1 == "S") { //Auf Schriftlich geändert
+          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q4 = "M";
+        }
+        else if (schuelerFach.Kursart_Q1 == "ZK") { //Auf Zusatzkurs geändert
+          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q3 = "";
+          schuelerFach.Kursart_Q4 = "";
+        }
+        if (schuelerFach.Kursart_Q1 == "LK") { //Auf Leistungskurs geändert
+          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
         }
       }
-      else if (property === "Kursart_Q2") {  //Q1.2 geklickt
-
-      }
-      else if (property === "Kursart_Q3") {  //Q2.1 geklickt
-
-      }
-      else if (property === "Kursart_Q4") {  //Q2.2 geklickt
-
-      }
-      else {
-        console.warn("Clicked on unknown Property")
-      }
     }
+    else if (property == "Kursart_Q2") {  //Q1.2 geklickt
 
-    schuelerFach[property] = newValue;
-    this.persistDatabase();
+    }
+    else if (property == "Kursart_Q3") {  //Q2.1 geklickt
+
+    }
+    else if (property == "Kursart_Q4") {  //Q2.2 geklickt
+
+    }
+    else {
+      console.warn("Clicked on unknown Property")
+    }
 
     console.log(newValue);
     //schuelerFach[property] = newValue;
