@@ -3,6 +3,7 @@ import axios from 'axios';
 import {environment} from '../environments/environment';
 import {ABPDatabase} from "./abp/abpdatabase";
 import {ABPFach} from "./abp/abpfach";
+import {ABPSchuelerFach} from "./abp/abpschueler-fach";
 
 declare let $: any;
 
@@ -32,6 +33,18 @@ export class LupoService {
     this.abpDatabase.ABP_SchuelerFaecher = this.abpDatabase.ABP_SchuelerFaecher.map((abpSchuelerFach) => {
       abpSchuelerFach.Fach = this.abpDatabase.ABP_Faecher.find((value) => value.ID === abpSchuelerFach.Fach_ID);
       return abpSchuelerFach;
+    });
+
+    this.abpDatabase.ABP_Faecher = this.abpDatabase.ABP_Faecher.map((abpFach) => {
+      abpFach.FachGruppe = this.abpDatabase.ABP_Fachgruppen.find((value) => value.Fach === abpFach.FachKrz);
+
+      if (abpFach.FachGruppe) {
+        if (abpFach.FachGruppe.Fächer === undefined)
+          abpFach.FachGruppe.Fächer = [];
+
+        abpFach.FachGruppe.Fächer.push(abpFach);
+      }
+      return abpFach;
     });
 
     this.hasData = true;
