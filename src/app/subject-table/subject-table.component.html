@@ -14,7 +14,7 @@
     </thead>
 
     <tbody>
-    <tr *ngFor="let schuelerFach of lupoService.abpDatabase.ABP_SchuelerFaecher | orderBy: 'Fach,FachGruppe,Aufgabenfeld;Fach,Sortierung'">
+    <tr *ngFor="let schuelerFach of lupoService.abpDatabase.ABP_SchuelerFaecher | orderBy: 'Fach.Sortierung'">
       <td class="thick-border-right">{{schuelerFach.Fach.Bezeichnung}}</td>
       <td>
         <select id="subjchoice-0-EF-1">

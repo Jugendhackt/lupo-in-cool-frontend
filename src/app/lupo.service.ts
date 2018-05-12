@@ -4,6 +4,7 @@ import {environment} from '../environments/environment';
 import {ABPDatabase} from "./abp/abpdatabase";
 import {ABPFach} from "./abp/abpfach";
 import {ABPSchuelerFach} from "./abp/abpschueler-fach";
+import {ABPFachgruppe} from "./abp/abpfachgruppe";
 
 declare let $: any;
 
@@ -43,6 +44,8 @@ export class LupoService {
           abpFach.FachGruppe.Fächer = [];
 
         abpFach.FachGruppe.Fächer.push(abpFach);
+      } else {
+        abpFach.FachGruppe = new ABPFachgruppe();
       }
       return abpFach;
     });

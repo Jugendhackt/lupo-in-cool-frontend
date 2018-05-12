@@ -7,18 +7,18 @@ import { DndDirective } from './dnd.directive';
 import { SubjectTableComponent } from './subject-table/subject-table.component';
 import {LupoService} from "./lupo.service";
 import {StorageService} from "./storage.service";
-import { OrderByPipe } from './order-by.pipe';
+import {OrderModule} from "ngx-order-pipe";
 
 @NgModule({
   declarations: [
     AppComponent,
     ModalUploadComponent,
     DndDirective,
-    SubjectTableComponent,
-    OrderByPipe
+    SubjectTableComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    OrderModule
   ],
   providers: [LupoService, StorageService],
   bootstrap: [AppComponent]
