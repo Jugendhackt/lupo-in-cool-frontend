@@ -94,14 +94,6 @@ export class SubjectTableComponent implements OnInit {
 
     }
     else if (property == "AbiturFach") {
-      console.log(schuelerFach);
-      this.tempAbi = schuelerFach.AbiturFach;
-      for(var i = 0; i < this.lupoService.abpDatabase.ABP_SchuelerFaecher.length; i++) {
-        let currFach = this.lupoService.abpDatabase.ABP_SchuelerFaecher[i];
-        if(currFach.AbiturFach == this.tempAbi) {
-          currFach.AbiturFach = null;
-        }
-      }
       if(schuelerFach.AbiturFach == 1 || schuelerFach.AbiturFach == 2) {
         schuelerFach.Kursart_Q1 = "LK";
         schuelerFach.Kursart_Q2 = "LK";
@@ -120,31 +112,48 @@ export class SubjectTableComponent implements OnInit {
         schuelerFach.Kursart_Q3 = "S";
         schuelerFach.Kursart_Q4 = "M";
       }
-        
+      else {
+        schuelerFach.Kursart_Q4 = "M";
+        if(schuelerFach.Kursart_Q1 == "LK") {
+          schuelerFach.Kursart_Q1 = "S";
+          schuelerFach.Kursart_Q2 = "S";
+          schuelerFach.Kursart_Q3 = "S";
+        }
+      }
+
+      this.tempAbi = schuelerFach.AbiturFach;
+      for(var i = 0; i < this.lupoService.abpDatabase.ABP_SchuelerFaecher.length; i++) {
+        let currFach = this.lupoService.abpDatabase.ABP_SchuelerFaecher[i];
+        if(currFach.AbiturFach == this.tempAbi) {
+          currFach.AbiturFach = null;
+        }
+      }
+      
+
       this.tempAbi = "";
     }
     else {
       console.warn("Clicked on unknown Property")
     }
 
-
     //Testen der Abitur-Kriterien
     this.abiFachBesetzt = [{"place": null}, {"place": null}, {"place": null}, {"place": null}];
     this.lupoService.abpDatabase.ABP_SchuelerFaecher.forEach((globalSchuelerFach) => {
       if (globalSchuelerFach.AbiturFach >= 1 && globalSchuelerFach.AbiturFach <= 4) {
         if (this.abiFachBesetzt[globalSchuelerFach.AbiturFach - 1].isset == false || this.abiFachBesetzt[globalSchuelerFach.AbiturFach - 1].isset ==  undefined){
+          console.log("isunset");
           const besetzt = this.abiFachBesetzt[globalSchuelerFach.AbiturFach - 1];
           besetzt.isset = true;
           besetzt.place = globalSchuelerFach;
         }
         else {
+          console.log("isset");
           globalSchuelerFach.AbiturFach = null;
         }
       }
     })
-    console.log(this.abiFachBesetzt);
 
-    console.log(newValue);
+
     //schuelerFach[property] = newValue;
     this.lupoService.updateValues();
     this.persistDatabase();
