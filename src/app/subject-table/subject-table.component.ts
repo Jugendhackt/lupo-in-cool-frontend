@@ -17,6 +17,7 @@ export class SubjectTableComponent implements OnInit {
 
   subjectCount = 1;
   public abiFachBesetzt: any;
+  public tempAbi;
 
   ngOnInit() {
     $(function () {
@@ -36,13 +37,12 @@ export class SubjectTableComponent implements OnInit {
     // Testen, ob Autofill angewendet werden kann
 
     if (property == "Kursart_E1") {  //EF.1 geklickt
-
+      if(schuelerFach.Kursart_E2 == "") {
+        schuelerFach.Kursart_E2 = schuelerFach.Kursart_E1;
+      }
     }
     else if (property == "Kursart_E2") {  //EF.2 geklickt
 
-      if (schuelerFach.Kursart_Q2 == "" && schuelerFach.Kursart_Q3 == "" && schuelerFach.Kursart_Q4 == "") {
-
-      }
     }
     else if (property == "Kursart_Q1") {  //Q1.1 geklickt
       if ((schuelerFach.Kursart_Q2 == "" && schuelerFach.Kursart_Q3 == "" && schuelerFach.Kursart_Q4 == "") || (schuelerFach.Kursart_Q2 && schuelerFach.Kursart_Q3)) {  //Rest der Q-Phase leer
@@ -80,13 +80,48 @@ export class SubjectTableComponent implements OnInit {
 
     }
     else if (property == "Kursart_Q3") {  //Q2.1 geklickt
-      schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q3;
+      if(schuelerFach.Kursart_Q3 == "S"){
+        schuelerFach.Kursart_Q4 = "M";
+      }
+      else {
+        schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q3;
+      }
+
+      if(schuelerFach.Kursart_Q4 == "") {
+      }
     }
     else if (property == "Kursart_Q4") {  //Q2.2 geklickt
 
     }
     else if (property == "AbiturFach") {
-
+      console.log(schuelerFach);
+      this.tempAbi = schuelerFach.AbiturFach;
+      for(var i = 0; i < this.lupoService.abpDatabase.ABP_SchuelerFaecher.length; i++) {
+        let currFach = this.lupoService.abpDatabase.ABP_SchuelerFaecher[i];
+        if(currFach.AbiturFach == this.tempAbi) {
+          currFach.AbiturFach = null;
+        }
+      }
+      if(schuelerFach.AbiturFach == 1 || schuelerFach.AbiturFach == 2) {
+        schuelerFach.Kursart_Q1 = "LK";
+        schuelerFach.Kursart_Q2 = "LK";
+        schuelerFach.Kursart_Q3 = "LK";
+        schuelerFach.Kursart_Q4 = "LK";
+      }
+      else if (schuelerFach.AbiturFach == 3) {
+        schuelerFach.Kursart_Q1 = "S";
+        schuelerFach.Kursart_Q2 = "S";
+        schuelerFach.Kursart_Q3 = "S";
+        schuelerFach.Kursart_Q4 = "S";
+      }
+      else if (schuelerFach.AbiturFach == 4) {
+        schuelerFach.Kursart_Q1 = "S";
+        schuelerFach.Kursart_Q2 = "S";
+        schuelerFach.Kursart_Q3 = "S";
+        schuelerFach.Kursart_Q4 = "M";
+      }
+        
+      this.tempAbi = "";
     }
     else {
       console.warn("Clicked on unknown Property")
@@ -97,13 +132,13 @@ export class SubjectTableComponent implements OnInit {
     this.abiFachBesetzt = [{"place": null}, {"place": null}, {"place": null}, {"place": null}];
     this.lupoService.abpDatabase.ABP_SchuelerFaecher.forEach((globalSchuelerFach) => {
       if (globalSchuelerFach.AbiturFach >= 1 && globalSchuelerFach.AbiturFach <= 4) {
-        if (this.abiFachBesetzt[globalSchuelerFach.AbiturFach - 1].isset == false){
+        if (this.abiFachBesetzt[globalSchuelerFach.AbiturFach - 1].isset == false || this.abiFachBesetzt[globalSchuelerFach.AbiturFach - 1].isset ==  undefined){
           const besetzt = this.abiFachBesetzt[globalSchuelerFach.AbiturFach - 1];
           besetzt.isset = true;
           besetzt.place = globalSchuelerFach;
         }
         else {
-          console.log("DOUBLE" + globalSchuelerFach.AbiturFach);
+          globalSchuelerFach.AbiturFach = null;
         }
       }
     })
