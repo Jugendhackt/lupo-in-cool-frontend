@@ -14,11 +14,10 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  @extend .white;
-  min-height: 10vh;
+  height: 245px;
 }
 main {
-  max-height: 90vh;
+  max-height: calc(100vh - 215px);
   overflow: auto;
 }
 
