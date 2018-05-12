@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { ModalUploadComponent } from './modal-upload/modal-upload.component';
 import { DndDirective } from './dnd.directive';
 import { SubjectTableComponent } from './subject-table/subject-table.component';
-import { OrderByPipe } from './order-by.pipe';
 import { FooterComponent } from './footer/footer.component';
 import { ModalFehlerComponent } from './modal-fehler/modal-fehler.component';
 import {LupoService} from './lupo.service';
@@ -19,15 +18,13 @@ import {FormsModule} from '@angular/forms';
     ModalUploadComponent,
     DndDirective,
     SubjectTableComponent,
-    OrderByPipe,
     FooterComponent,
     ModalFehlerComponent
   ],
   imports: [
     BrowserModule,
     OrderModule,
-    FormsModule,
-    SubjectTableComponent
+    FormsModule
   ],
   providers: [LupoService, StorageService],
   bootstrap: [AppComponent]
