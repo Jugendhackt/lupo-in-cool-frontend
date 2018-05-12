@@ -1,6 +1,7 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {LupoService} from "../lupo.service";
 import {StorageService} from "../storage.service";
+import {ABPSchuelerFach} from "../abp/abpschueler-fach";
 declare let $: any;
 @Component({
   selector: 'app-subject-table',
@@ -39,7 +40,14 @@ export class SubjectTableComponent implements OnInit, OnChanges {
     this.storageService.put('adb', this.lupoService.abpDatabase);
   }
 
+  public onChange(schuelerFach: ABPSchuelerFach, property: string, newValue: string) {
+    console.log(schuelerFach, property, newValue);
+    schuelerFach[property] = newValue;
+
+    this.persistDatabase();
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
+    console.log("changes", changes);
   }
 }
