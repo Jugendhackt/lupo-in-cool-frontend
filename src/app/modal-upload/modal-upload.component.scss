@@ -1,0 +1,9 @@
+@import "../../assets/materialize";
+#modal-upload {
+  .modal-content {
+    .modal-title {
+      @extend .thin;
+      text-align: center;
+    }
+  }
+}
