@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {LupoService} from "../lupo.service";
 import {StorageService} from "../storage.service";
 import {ABPSchuelerFach} from "../abp/abpschueler-fach";
@@ -10,7 +10,7 @@ declare let $: any;
 })
 export class SubjectTableComponent implements OnInit, OnChanges {
 
-  constructor(private lupoService: LupoService, private storageService: StorageService) { }
+  constructor(private lupoService: LupoService, private storageService: StorageService, private cdRef: ChangeDetectorRef) { }
   subjectCount = 1;
 
   ngOnInit() {
@@ -51,7 +51,8 @@ export class SubjectTableComponent implements OnInit, OnChanges {
       }
     }
 
-    schuelerFach[property] = newValue;
+    console.log(newValue);
+    //schuelerFach[property] = newValue;
     this.lupoService.updateValues();
     this.persistDatabase();
   }
