@@ -10,7 +10,7 @@ declare let $: any;
 })
 export class SubjectTableComponent implements OnInit, OnChanges {
 
-  constructor(private lupoService: LupoService, private storageService: StorageService) { }
+  constructor(public lupoService: LupoService, private storageService: StorageService) { }
   subjectCount = 1;
 
   ngOnInit() {

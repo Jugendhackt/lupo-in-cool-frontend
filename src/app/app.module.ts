@@ -11,6 +11,8 @@ import {LupoService} from './lupo.service';
 import {StorageService} from './storage.service';
 import {OrderModule} from 'ngx-order-pipe';
 import {FormsModule} from '@angular/forms';
+import {environment} from "../environments/environment";
+import {ServiceWorkerModule} from "@angular/service-worker";
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import {FormsModule} from '@angular/forms';
   imports: [
     BrowserModule,
     OrderModule,
-    FormsModule
+    FormsModule,
+    environment.production ? ServiceWorkerModule.register('/nsgw-worker.js') : [],
   ],
   providers: [LupoService, StorageService],
   bootstrap: [AppComponent]

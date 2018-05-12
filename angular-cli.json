@@ -1,5 +1,6 @@
 {
   "defaults": {
-    "poll": 1000
+    "poll": 1000,
+    "serviceWorker": true
   }
 }

@@ -8,5 +8,5 @@ declare let $: any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private lupoService: LupoService) {}
+  constructor(public lupoService: LupoService) {}
 }
