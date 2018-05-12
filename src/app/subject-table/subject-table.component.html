@@ -19,29 +19,30 @@
         <td class="thick-border-right">{{schuelerFach.Fach.Bezeichnung}}</td>
         <td>
           <select [ngModel]="schuelerFach.Kursart_E1" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E1', $event)" name="kursart-e1-{{schuelerFach.ID}}">
-            <option value="" disabled selected></option>
+            <option value="" selected></option>
             <option value="M">M</option>
             <option value="S">S</option>
           </select>
         </td>
         <td class="thick-border-right">
           <select [(ngModel)]="schuelerFach.Kursart_E2" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E1', $event)" name="kursart-e2-{{schuelerFach.ID}}">
-            <option value="" disabled selected></option>
+            <option value="" selected></option>
             <option value="M">M</option>
             <option value="S">S</option>
           </select>
         </td>
         <td>
           <select [(ngModel)]="schuelerFach.Kursart_Q1" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E1', $event)" name="kursart-q1-{{schuelerFach.ID}}">
-            <option value="" disabled selected></option>
+            <option value="" selected></option>
             <option value="M">M</option>
             <option value="S">S</option>
             <option value="LK">LK</option>
+            <option value="ZK">ZK</option>
           </select>
         </td>
         <td>
           <select [(ngModel)]="schuelerFach.Kursart_Q2" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E1', $event)" name="kursart-q2-{{schuelerFach.ID}}">
-            <option value="" disabled selected></option>
+            <option value="" selected></option>
             <option value="M">M</option>
             <option value="S">S</option>
             <option value="LK">LK</option>
@@ -49,7 +50,7 @@
         </td>
         <td>
           <select [(ngModel)]="schuelerFach.Kursart_Q3" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E1', $event)" name="kursart-q3-{{schuelerFach.ID}}">
-            <option value="" disabled selected></option>
+            <option value="" selected></option>
             <option value="M">M</option>
             <option value="S">S</option>
             <option value="LK">LK</option>
@@ -57,7 +58,7 @@
         </td>
         <td class="thick-border-right">
           <select [(ngModel)]="schuelerFach.Kursart_Q4" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E1', $event)" name="kursart-q4-{{schuelerFach.ID}}">
-            <option value="" disabled selected></option>
+            <option value="" selected></option>
             <option value="M">M</option>
             <option value="S">S</option>
             <option value="LK">LK</option>

@@ -17,22 +17,6 @@ export class SubjectTableComponent implements OnInit, OnChanges {
     $(function () {
       $('select').material_select();
     });
-    this.initEventListeners();
-  }
-
-  initEventListeners():void {
-    for(var i = 0; i < this.subjectCount; i++) {
-
-    }
-  }
-
-  onSubjectChoiceChanged(semester:string, objid:string):void {
-    let choice = $("#"+objid).val();
-    console.log(choice);
-  }
-
-  setQ22withABI(abifachno):void {
-    console.log(abifachno);
   }
 
   public persistDatabase() {
@@ -42,9 +26,42 @@ export class SubjectTableComponent implements OnInit, OnChanges {
 
   public onChange(schuelerFach: ABPSchuelerFach, property: string, newValue: string) {
     console.log(schuelerFach, property, newValue);
-    schuelerFach[property] = newValue;
 
+    //Check for autocomplete
+    if(this.qLineEmpty(property, schuelerFach)) {
+      if(schuelerFach.Kursart_Q1 == "M"){
+        schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+        schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
+        schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
+      }
+      else if(schuelerFach.Kursart_Q1 == "S"){
+        schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+        schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
+        schuelerFach.Kursart_Q4 = "M";
+      }
+      else if(schuelerFach.Kursart_Q1 == "ZK"){
+        schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+        schuelerFach.Kursart_Q3 = "";
+        schuelerFach.Kursart_Q4 = "";
+      }
+      if(schuelerFach.Kursart_Q1 == "LK"){
+        schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+        schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
+        schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
+      }
+    }
+
+    schuelerFach[property] = newValue;
     this.persistDatabase();
+  }
+
+  qLineEmpty(line: string, schuelerFach: any): boolean {
+    if(schuelerFach.Kursart_Q2 == "" && schuelerFach.Kursart_Q3 == "" && schuelerFach.Kursart_Q4 == "") {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
