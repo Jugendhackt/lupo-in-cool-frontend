@@ -15,10 +15,10 @@ footer {
   bottom: 0;
   width: 100%;
   @extend .white;
-  height: 25vh;
+  min-height: 10vh;
 }
 main {
-  height: 75vh;
+  max-height: 90vh;
   overflow: auto;
 }
 
