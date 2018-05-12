@@ -35,11 +35,11 @@
 // 1. Colors
 // ==========================================================================
 
-$primary-color: color("green", "darken-3") !default;
+$primary-color: color("red", "darken-3") !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
 $primary-color-dark: darken($primary-color, 15%) !default;
 
-$secondary-color: color("red", "darken-3") !default;
+$secondary-color: color("green", "darken-3") !default;
 $success-color: color("green", "base") !default;
 $error-color: color("red", "base") !default;
 $link-color: color("light-blue", "darken-1") !default;
@@ -147,7 +147,7 @@ $timepicker-clock-plate-bg: #eee;
 $dropdown-bg-color: #fff !default;
 $dropdown-hover-bg-color: #eee !default;
 $dropdown-color: $secondary-color !default;
-$dropdown-item-height: 50px !default;
+$dropdown-item-height: 30px !default;
 
 
 // 10. Fonts
@@ -159,7 +159,7 @@ $roboto-font-path: "/assets/fonts/roboto/" !default;
 // ==========================================================================
 
 // Text Inputs + Textarea
-$input-height: 3rem !default;
+$input-height: 2rem !default;
 $input-border-color: color("grey", "base") !default;
 $input-border: 1px solid $input-border-color !default;
 //$input-border: none !default;
@@ -168,7 +168,7 @@ $input-error-color: $error-color !default;
 $input-success-color: $success-color !default;
 $input-focus-color: $secondary-color !default;
 $input-font-size: 1rem !default;
-$input-margin-bottom: 20px;
+$input-margin-bottom: 0px;
 $input-margin: 0 0 $input-margin-bottom 0 !default;
 $input-padding: 0 !default;
 $input-transition: all .3s !default;
@@ -195,7 +195,8 @@ $select-background: rgba(255, 255, 255, 0.90) !default;
 $select-focus: 1px solid lighten($secondary-color, 47%) !default;
 $select-option-hover: rgba(0,0,0,.06) !default;
 $select-option-focus: rgba(0,0,0,.03) !default;
-$select-padding: 5px !default;
+// $select-padding: 5px !default;
+$select-padding: 0px !default;
 $select-radius: 2px !default;
 $select-disabled-color: rgba(0,0,0,.3) !default;
 
