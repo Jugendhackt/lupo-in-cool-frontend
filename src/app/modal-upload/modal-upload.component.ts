@@ -15,8 +15,8 @@ export class ModalUploadComponent implements OnInit {
     console.log(this.lupoService.convertLupoFile);
     $(() => {
       $('#modal-upload').modal()
-        .modal('open')
-        .change((evt) => {
+        .modal('open');
+      $('#modal-upload').change(() => {
           const input = <HTMLInputElement>document.getElementById('modal-upload-fileUploadInput');
           if (input.files.length === 1) {
             this.lupoService.convertLupoFile(input.files[0]);
