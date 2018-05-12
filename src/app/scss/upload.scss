@@ -1,0 +1,10 @@
+#modal-wrapper {
+  #modal-upload {
+    #modal-content {
+      #modal-title {
+        @extend .thin;
+        text-align: center;
+      }
+    }
+  }
+}
