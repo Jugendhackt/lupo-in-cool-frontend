@@ -1,5 +1,5 @@
-<div id="subjecttable-wrapper">
-  <table id="subjecttable" class="centered">
+<div ngClass="subjecttable-wrapper">
+  <table class="centered">
     <thead>
     <tr>
       <th style="width: 25%" class="thick-border-right">Fach</th>
@@ -14,32 +14,24 @@
     </thead>
 
     <tbody>
-    <tr *ngFor="let schuelerFach of lupoService.abpDatabase.ABP_SchuelerFaecher | orderBy: 'Fach,Sortierung'">
+    <tr *ngFor="let schuelerFach of lupoService.abpDatabase.ABP_SchuelerFaecher | orderBy: 'Fach.Sortierung'">
       <td class="thick-border-right">{{schuelerFach.Fach.Bezeichnung}}</td>
       <td>
-        <select id="subjchoice-0-EF-1">
+        <select [(ngModel)]="schuelerFach.Kursart_E1">
           <option value="" disabled selected> </option>
           <option value="M">M</option>
           <option value="S">S</option>
         </select>
       </td>
       <td class="thick-border-right">
-        <select id="subjchoice-0-EF-2">
+        <select [(ngModel)]="schuelerFach.Kursart_E2">
           <option value="" disabled selected> </option>
           <option value="M">M</option>
           <option value="S">S</option>
         </select>
       </td>
       <td>
-        <select id="subjchoice-0-Q1-1">
-          <option value="" disabled selected> </option>
-          <option value="M">M</option>
-          <option value="S">S</option>
-          <option value="LK">LK</option>
-        </select>
-      </td>
-      <td>
-        <select id="subjchoice-0-Q1-2">
+        <select [(ngModel)]="schuelerFach.Kursart_Q1">
           <option value="" disabled selected> </option>
           <option value="M">M</option>
           <option value="S">S</option>
@@ -47,7 +39,15 @@
         </select>
       </td>
       <td>
-        <select id="subjchoice-0-Q2-1" onchange="onSubjectChoiceChanged('Q2-1', 'subjchoice-0-Q2-1')">
+        <select [(ngModel)]="schuelerFach.Kursart_Q2">
+          <option value="" disabled selected> </option>
+          <option value="M">M</option>
+          <option value="S">S</option>
+          <option value="LK">LK</option>
+        </select>
+      </td>
+      <td>
+        <select [(ngModel)]="schuelerFach.Kursart_Q3">
           <option value="" disabled selected> </option>
           <option value="M">M</option>
           <option value="S">S</option>
@@ -55,9 +55,15 @@
         </select>
       </td>
       <td class="thick-border-right">
+        <select [(ngModel)]="schuelerFach.Kursart_Q4">
+          <option value="" disabled selected> </option>
+          <option value="M">M</option>
+          <option value="S">S</option>
+          <option value="LK">LK</option>
+        </select>
       </td>
       <td>
-        <select id="abichoice-0">
+        <select [(ngModel)]="schuelerFach.AbiturFach">
           <option value="0" selected> </option>
           <option value="1">1</option>
           <option value="2">2</option>

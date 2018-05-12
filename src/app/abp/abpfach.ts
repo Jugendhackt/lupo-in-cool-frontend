@@ -1,5 +1,10 @@
+import {ABPFachgruppe} from "./abpfachgruppe";
+
 export class ABPFach {
   public ID: number;
+
+  public FachGruppe: ABPFachgruppe;
+
   public FachKrz: string;
   public Bezeichnung: string;
   public StatistikKrz: string;
