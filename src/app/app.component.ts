@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+declare let $: any;
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  
+  ngOnInit() {
+    $(document).ready(function() {
+      $('select').material_select();
+    });
+  }
 }
