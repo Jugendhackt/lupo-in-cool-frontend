@@ -3,3 +3,8 @@
 body {
   font-family: "Roboto", sans-serif;
 }
+#subjecttable-wrapper {
+  .select-wrapper input.select-dropdown {
+    border-bottom: none;
+  }
+}
