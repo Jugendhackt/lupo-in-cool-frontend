@@ -1,0 +1,8 @@
+@import "../assets/materialize";
+@import "scss/error";
+@import "scss/table";
+@import "scss/upload";
+
+h1 {
+    @extend .red;
+}
