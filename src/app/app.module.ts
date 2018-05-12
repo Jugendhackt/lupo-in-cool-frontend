@@ -8,6 +8,7 @@ import { SubjectTableComponent } from './subject-table/subject-table.component';
 import {LupoService} from "./lupo.service";
 import {StorageService} from "./storage.service";
 import {OrderModule} from "ngx-order-pipe";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {OrderModule} from "ngx-order-pipe";
   ],
   imports: [
     BrowserModule,
-    OrderModule
+    OrderModule,
+    FormsModule
   ],
   providers: [LupoService, StorageService],
   bootstrap: [AppComponent]
