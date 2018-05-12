@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { ModalUploadComponent } from './modal-upload/modal-upload.component';
 import { DndDirective } from './dnd.directive';
 import { SubjectTableComponent } from './subject-table/subject-table.component';
+import {LupoService} from "./lupo.service";
+import {StorageService} from "./storage.service";
 
 @NgModule({
   declarations: [
@@ -16,7 +18,7 @@ import { SubjectTableComponent } from './subject-table/subject-table.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [LupoService, StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
