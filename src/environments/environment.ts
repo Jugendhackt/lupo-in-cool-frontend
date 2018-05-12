@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendURL: 'http://127.0.0.1:3000'
+  backendURL: 'http://lupo-backend.le-styx.net:3000'
 };
 
 /*
