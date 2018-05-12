@@ -1,38 +1,46 @@
-<main appDnd class="kewl">
-  <div id="subjecttable-wrapper">
-      <table id="subjecttable">
-          <thead>
-            <tr>
-                <th class="thick-border-right">Fach</th>
-                <th>EF.1</th>
-                <th class="thick-border-right">EF.2</th>
-                <th>Q1.1</th>
-                <th>Q1.2</th>
-                <th>Q2.1</th>
-                <th>Q2.2</th>
-            </tr>
-          </thead>
+<main>
+	<div id="subjecttable-wrapper">
+		<table id="subjecttable" class="centered">
+			<thead>
+				<tr>
+					<th style="width: 25%" class="thick-border-right">Fach</th>
+					<th style="width: 15%">EF.1</th>
+					<th style="width: 15%" class="thick-border-right">EF.2</th>
+					<th style="width: 15%">Q1.1</th>
+					<th>Q1.2</th>
+					<th>Q2.1</th>
+					<th class="thick-border-right">Q2.2</th>
+					<th>Abifächer</th>
+				</tr>
+			</thead>
 
-          <tbody>
-            <tr>
-              <td class="thick-border-right">Alvin</td>
-              <td>Eclair</td>
-              <td class="thick-border-right">$0.87</td>
-            </tr>
-            <tr>
-              <td class="thick-border-right">Alan</td>
-              <td>Jellybean</td>
-              <td class="thick-border-right">$3.76</td>
-            </tr>
-            <tr>
-              <td class="thick-border-right">Jonathan</td>
-              <td>Lollipop</td>
-              <td class="thick-border-right">$7.00</td>
-            </tr>
-          </tbody>
-        </table>
-  </div>
+			<tbody>
+				<tr>
+					<td class="thick-border-right">Englisch</td>
+					<td> 
+						<select>
+							<option value="" disabled selected> - </option>
+							<option value="M">M</option>
+							<option value="S">S</option>
+							<option value="LK">LK</option>
+						</select>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </main>
 <footer>
 
 </footer>
+<div id="modal-wrapper">
+  <div id="modal-upload" class="modal">
+    <div class="modal-content">
+      <h4 class="modal-title"></h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+</div>
