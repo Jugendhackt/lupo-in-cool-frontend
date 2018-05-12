@@ -11,6 +11,7 @@ import {LupoService} from './lupo.service';
 import {StorageService} from './storage.service';
 import {OrderModule} from 'ngx-order-pipe';
 import {FormsModule} from '@angular/forms';
+import { FooterStundenColorComponent } from './footer-stunden-color/footer-stunden-color.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {FormsModule} from '@angular/forms';
     DndDirective,
     SubjectTableComponent,
     FooterComponent,
-    ModalFehlerComponent
+    ModalFehlerComponent,
+    FooterStundenColorComponent
   ],
   imports: [
     BrowserModule,
