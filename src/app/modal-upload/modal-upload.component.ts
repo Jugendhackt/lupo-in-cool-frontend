@@ -16,7 +16,9 @@ export class ModalUploadComponent implements OnInit {
 
   ngOnInit() {
     $(() => {
-      $('#modal-upload').modal();
+      $('#modal-upload').modal({
+        dismissible: false,
+      });
       if (!this.lupoService.hasData) {
         $('#modal-upload').modal('open');
       }

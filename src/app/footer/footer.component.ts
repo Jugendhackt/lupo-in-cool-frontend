@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {LupoService} from "../lupo.service";
+import {LupoService} from '../lupo.service';
 
 @Component({
   selector: 'app-footer',

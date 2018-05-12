@@ -1,7 +1,7 @@
 <main *ngIf="lupoService.hasData">
   <app-subject-table></app-subject-table>
 </main>
-<footer>
+<footer *ngIf="lupoService.hasData">
   <app-footer></app-footer>
 </footer>
 <div id="modal-wrapper">

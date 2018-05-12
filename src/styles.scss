@@ -2,6 +2,7 @@
 @import "assets/materialize.scss";
 body {
   font-family: "Roboto", sans-serif;
+  overflow: hidden;
 }
 .subjecttable-wrapper {
   .select-wrapper input.select-dropdown {
@@ -13,5 +14,11 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  @extend .white
+  @extend .white;
+  height: 25vh;
 }
+main {
+  height: 75vh;
+  overflow: auto;
+}
+

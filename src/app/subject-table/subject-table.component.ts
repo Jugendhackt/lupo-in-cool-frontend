@@ -73,7 +73,7 @@ export class SubjectTableComponent implements OnInit {
         }
       }
       else if(schuelerFach.Kursart_Q2 == "" && (schuelerFach.Kursart_Q3 != "" || schuelerFach.Kursart_Q4 != "")) {
-        schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;        
+        schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
       }
     }
     else if (property == "Kursart_Q2") {  //Q1.2 geklickt
