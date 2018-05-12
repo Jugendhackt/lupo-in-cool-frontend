@@ -10,7 +10,10 @@ export class ModalUploadComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    $('#modal-upload').modal();
+    $(function () {
+      $('#modal-upload').modal();
+      $('#modal-upload').modal('open');
+    });
   }
 
 }
