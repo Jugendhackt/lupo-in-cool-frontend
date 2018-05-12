@@ -1,0 +1,20 @@
+version: '2'
+services:
+  backend:
+    build: ../lupo-in-cool-backend
+    volumes:
+    # only for development
+      - ../lupo-in-cool-backend/:/app
+    ports:
+      - "0.0.0.0:3000:3000"
+#   depends_on:
+    environment:
+      PORT: 3000
+  frontend:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "0.0.0.0:4200:4200"
+    depends_on:
+      - backend
