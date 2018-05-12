@@ -65,4 +65,8 @@ export class LupoService {
     this.abpDatabase = null;
     $('#modal-upload').modal('open');
   }
+
+  public updateValues(): void {
+
+  }
 }

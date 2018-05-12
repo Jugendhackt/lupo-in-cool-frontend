@@ -52,6 +52,7 @@ export class SubjectTableComponent implements OnInit, OnChanges {
     }
 
     schuelerFach[property] = newValue;
+    this.lupoService.updateValues();
     this.persistDatabase();
   }
 
