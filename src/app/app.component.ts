@@ -8,10 +8,4 @@ declare let $: any;
 })
 export class AppComponent {
   title = 'app';
-  
-  ngOnInit() {
-    $(document).ready(function() {
-      $('select').material_select();
-    });
-  }
 }
