@@ -1,29 +1,17 @@
-# LupoInCoolFrontend
+# LuPO In "Cool" Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1.
+Das Projekt wurde mit [Angular CLI](https://github.com/angular/angular-cli) Version 6.0.1 erstellt.
+Um das Projekt lokal bei sich auf dem PC zu bearbeiten muss man eine NodeJS Version von 10 oder höher haben. Man kann [Node JS hier](https://nodejs.org) herunterladen.
 
-## Development server
+## Was ist LuPO in "Cool"
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+LuPO in "Cool" ist eine neue und graphisch ansprechenderen Version von [LuPO](https://www.svws.nrw.de/index.php?id=lupo).
+LuPO in "Cool" ist eine Progressive Web Application, die nicht von einem OS abhängig ist.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Klone diese Repository mit `git clone https://github.com/Jugendhackt/lupo-in-cool-frontend.git` und installiere alle Node Module mit `npm install`.
 
-## Build
+## Starten eines privaten Servers
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-=======
-# lupo-in-cool-frontend
+Nutze `ng serve` um einen privaten Webserver zu erstellen und rufe dann `http://localhost:4200` auf. Die App läd automatisch neu, wenn man was am Code verändert.
