@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LupoService} from "../lupo.service";
 declare let $: any;
 @Component({
   selector: 'app-subject-table',
@@ -7,7 +8,7 @@ declare let $: any;
 })
 export class SubjectTableComponent implements OnInit {
 
-  constructor() { }
+  constructor(private lupoService: LupoService) { }
 
   ngOnInit() {
     $(function () {
