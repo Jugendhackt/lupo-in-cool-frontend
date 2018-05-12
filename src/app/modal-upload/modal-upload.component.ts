@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LupoService } from '../lupo.service';
-import {ABPDatabase} from "../abp/abpdatabase";
+import {ABPDatabase} from '../abp/abpdatabase';
 
 declare let $: any;
 @Component({
@@ -14,7 +14,9 @@ export class ModalUploadComponent implements OnInit {
 
   ngOnInit() {
     $(() => {
-      $('#modal-upload').modal()
+      $('#modal-upload').modal({
+        dismissible: false,
+      })
         .modal('open');
       $('#modal-upload').change(() => {
           const input = <HTMLInputElement>document.getElementById('modal-upload-fileUploadInput');
