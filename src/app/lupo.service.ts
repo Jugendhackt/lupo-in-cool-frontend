@@ -3,12 +3,12 @@ import axios from 'axios';
 import {environment} from '../environments/environment';
 import {ABPDatabase} from "./abp/abpdatabase";
 
-@Injectable({
-  providedIn: "root"
-})
+declare let $: any;
+
 export class LupoService {
 
   public abpDatabase: ABPDatabase = null;
+  public hasData: boolean = false;
 
   constructor() {
   }
@@ -21,11 +21,13 @@ export class LupoService {
       const formData = new FormData();
       formData.append('lupo', file);
 
-      return axios.post(environment.backendURL + '/convert/json', formData).then((res) => res.data as ABPDatabase) as Promise<ABPDatabase>;
+      axios.post(environment.backendURL + '/convert/json', formData).then((res) => resolve(res.data as ABPDatabase)).catch(reject);
     }));
   }
 
   setDatabase(abpDatabase: ABPDatabase): void {
     this.abpDatabase = abpDatabase;
+    this.hasData = true;
+    $('#modal-upload').modal('close');
   }
 }

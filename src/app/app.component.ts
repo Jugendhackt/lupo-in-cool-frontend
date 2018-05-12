@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {LupoService} from "./lupo.service";
 declare let $: any;
 
 @Component({
@@ -7,5 +8,5 @@ declare let $: any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  constructor(private lupoService: LupoService) {}
 }

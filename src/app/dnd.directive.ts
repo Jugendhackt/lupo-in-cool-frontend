@@ -1,5 +1,6 @@
 import {Directive, HostBinding, HostListener, Input} from '@angular/core';
 import {LupoService} from './lupo.service';
+import {ABPDatabase} from "./abp/abpdatabase";
 
 @Directive({
   selector: '[appDnd]'
@@ -32,7 +33,9 @@ export class DndDirective {
     evt.stopPropagation();
     const files = evt.dataTransfer.files;
     if (files.length === 1) {
-      this.lupoService.convertLupoFile(files[0]);
+      this.lupoService.convertLupoFile(files[0]).then((lupoResponse: ABPDatabase) => {
+        this.lupoService.setDatabase(lupoResponse);
+      });
     }
     this.classes = '';
   }

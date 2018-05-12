@@ -14,8 +14,8 @@
     </thead>
 
     <tbody>
-    <tr>
-      <td class="thick-border-right">Englisch</td>
+    <tr *ngFor="let fach of lupoService.abpDatabase.ABP_Faecher">
+      <td class="thick-border-right">{{fach.Bezeichnung}}</td>
       <td>
         <select id="subjchoice-0-EF-1">
           <option value="" disabled selected> </option>
