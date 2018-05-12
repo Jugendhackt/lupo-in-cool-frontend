@@ -16,11 +16,13 @@ export class SubjectTableComponent implements OnInit {
   }
 
   subjectCount = 1;
+  public abiFachBesetzt: any;
 
   ngOnInit() {
     $(function () {
       $('select').material_select();
     });
+    this.abiFachBesetzt = [{"place": null, "isSet": false}, {"place": null, "isSet": false}, {"place": null, "isSet": false}, {"place": null, "isSet": false}];
   }
 
   public persistDatabase() {
@@ -30,6 +32,9 @@ export class SubjectTableComponent implements OnInit {
 
   public onChange(schuelerFach: ABPSchuelerFach, property: string, newValue: string) {
     console.log(property);
+
+    // Testen, ob Autofill angewendet werden kann
+
     if (property == "Kursart_E1") {  //EF.1 geklickt
 
     }
@@ -80,9 +85,29 @@ export class SubjectTableComponent implements OnInit {
     else if (property == "Kursart_Q4") {  //Q2.2 geklickt
 
     }
+    else if (property == "AbiturFach") {
+
+    }
     else {
       console.warn("Clicked on unknown Property")
     }
+
+
+    //Testen der Abitur-Kriterien
+    this.abiFachBesetzt = [{"place": null}, {"place": null}, {"place": null}, {"place": null}];
+    this.lupoService.abpDatabase.ABP_SchuelerFaecher.forEach((globalSchuelerFach) => {
+      if (globalSchuelerFach.AbiturFach >= 1 && globalSchuelerFach.AbiturFach <= 4) {
+        if (this.abiFachBesetzt[globalSchuelerFach.AbiturFach - 1].isset == false){
+          const besetzt = this.abiFachBesetzt[globalSchuelerFach.AbiturFach - 1];
+          besetzt.isset = true;
+          besetzt.place = globalSchuelerFach;
+        }
+        else {
+          console.log("DOUBLE" + globalSchuelerFach.AbiturFach);
+        }
+      }
+    })
+    console.log(this.abiFachBesetzt);
 
     console.log(newValue);
     //schuelerFach[property] = newValue;

@@ -66,7 +66,7 @@
         <td>
           <select [(ngModel)]="schuelerFach.AbiturFach" class="browser-default" (change)="onChange(schuelerFach, 'AbiturFach', $event)" name="abifach-{{schuelerFach.ID}}">
             <option value="" selected></option>
-            <option value="1">1</option>
+            <option value="1" *ngIf="!abiFachBesetzt[0].isSet">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
