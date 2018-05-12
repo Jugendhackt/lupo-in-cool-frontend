@@ -58,6 +58,8 @@ export class LupoService {
 
     this.hasData = true;
     $('#modal-upload').modal('close');
+
+    this.updateValues();
   }
 
   public resetDatabase(): void {
@@ -91,6 +93,5 @@ export class LupoService {
     this.abpDatabase.ABP_Schueler[0].AnzK_Q2 = this.calcValues(faecher, 'Q2');
     this.abpDatabase.ABP_Schueler[0].AnzK_Q3 = this.calcValues(faecher, 'Q3');
     this.abpDatabase.ABP_Schueler[0].AnzK_Q4 = this.calcValues(faecher, 'Q4');
-
   }
 }
