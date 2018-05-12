@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LupoService } from '../lupo.service';
+
 declare let $: any;
 @Component({
   selector: 'app-modal-upload',
@@ -7,12 +9,19 @@ declare let $: any;
 })
 export class ModalUploadComponent implements OnInit {
 
-  constructor() { }
+  constructor(private lupoService: LupoService) { }
 
   ngOnInit() {
+    console.log(this.lupoService);
     $(function () {
-      $('#modal-upload').modal();
-      $('#modal-upload').modal('open');
+      $('#modal-upload').modal()
+        .modal('open')
+        .change(function (evt) {
+          const input = <HTMLInputElement>document.getElementById('modal-upload-fileUploadInput');
+          if (input.files.length === 1) {
+            this.lupoService.convertLupoFile(input.files[0]);
+          }
+      });
     });
   }
 
