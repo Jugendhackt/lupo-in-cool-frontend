@@ -25,43 +25,52 @@ export class SubjectTableComponent implements OnInit, OnChanges {
   }
 
   public onChange(schuelerFach: ABPSchuelerFach, property: string, newValue: string) {
-    console.log(schuelerFach, property, newValue);
+    console.log(property);
+    if (property == "Kursart_E1") {  //EF.1 geklickt
 
-    //Check for autocomplete
-    if(this.qLineEmpty(property, schuelerFach)) {
-      if(schuelerFach.Kursart_Q1 == "M"){
-        schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
-        schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
-        schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
+    }
+    else if (property == "Kursart_E2") {  //EF.2 geklickt
+
+    }
+    else if (property == "Kursart_Q1") {  //Q1.1 geklickt
+      if (schuelerFach.Kursart_Q2 == "" && schuelerFach.Kursart_Q3 == "" && schuelerFach.Kursart_Q4 == "") {  //Rest der Q-Phase leer
+        if(schuelerFach.Kursart_Q1 == "M"){ //Auf Mündlich geändert
+          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
+        }
+        else if(schuelerFach.Kursart_Q1 == "S"){ //Auf Schriftlich geändert
+          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q4 = "M";
+        }
+        else if(schuelerFach.Kursart_Q1 == "ZK"){ //Auf Zusatzkurs geändert
+          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q3 = "";
+          schuelerFach.Kursart_Q4 = "";
+        }
+        if(schuelerFach.Kursart_Q1 == "LK"){ //Auf Leistungskurs geändert
+          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
+        }
       }
-      else if(schuelerFach.Kursart_Q1 == "S"){
-        schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
-        schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
-        schuelerFach.Kursart_Q4 = "M";
-      }
-      else if(schuelerFach.Kursart_Q1 == "ZK"){
-        schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
-        schuelerFach.Kursart_Q3 = "";
-        schuelerFach.Kursart_Q4 = "";
-      }
-      if(schuelerFach.Kursart_Q1 == "LK"){
-        schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
-        schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
-        schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
-      }
+    } 
+    else if (property == "Kursart_Q2") {  //Q1.2 geklickt
+
+    } 
+    else if (property == "Kursart_Q3") {  //Q2.1 geklickt
+
+    } 
+    else if (property == "Kursart_Q4") {  //Q2.2 geklickt
+
+    } 
+    else {
+      console.warn("Clicked on unknown Property")
     }
 
     schuelerFach[property] = newValue;
     this.persistDatabase();
-  }
-
-  qLineEmpty(line: string, schuelerFach: any): boolean {
-    if(schuelerFach.Kursart_Q2 == "" && schuelerFach.Kursart_Q3 == "" && schuelerFach.Kursart_Q4 == "") {
-      return true;
-    }
-    else {
-      return false;
-    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
