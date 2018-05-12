@@ -12,11 +12,11 @@ export class ModalUploadComponent implements OnInit {
   constructor(private lupoService: LupoService) { }
 
   ngOnInit() {
-    console.log(this.lupoService);
-    $(function () {
+    console.log(this.lupoService.convertLupoFile);
+    $(() => {
       $('#modal-upload').modal()
         .modal('open')
-        .change(function (evt) {
+        .change((evt) => {
           const input = <HTMLInputElement>document.getElementById('modal-upload-fileUploadInput');
           if (input.files.length === 1) {
             this.lupoService.convertLupoFile(input.files[0]);
