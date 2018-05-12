@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendURL: 'https://lupo-backend.le-styx.net'
+  backendURL: 'https://backend-lupo.le-styx.net'
 };
 
 /*
