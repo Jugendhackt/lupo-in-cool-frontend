@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {LupoService} from "../lupo.service";
 
 @Component({
@@ -6,11 +6,19 @@ import {LupoService} from "../lupo.service";
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnInit, OnDestroy {
+  private timer: number;
 
-  constructor(public lupoService: LupoService) { }
+  constructor(public lupoService: LupoService, private cdRef: ChangeDetectorRef) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.timer = window.setInterval(() => {
+      this.cdRef.detectChanges();
+    }, 500);
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.timer);
   }
 
 }
