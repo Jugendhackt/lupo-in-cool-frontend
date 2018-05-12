@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import axios from 'axios';
 import {environment} from '../environments/environment';
 import {ABPDatabase} from "./abp/abpdatabase";
+import {ABPFach} from "./abp/abpfach";
 
 declare let $: any;
 
@@ -27,6 +28,12 @@ export class LupoService {
 
   setDatabase(abpDatabase: ABPDatabase): void {
     this.abpDatabase = abpDatabase;
+
+    this.abpDatabase.ABP_SchuelerFaecher = this.abpDatabase.ABP_SchuelerFaecher.map((abpSchuelerFach) => {
+      abpSchuelerFach.Fach = this.abpDatabase.ABP_Faecher.find((value) => value.ID === abpSchuelerFach.Fach_ID);
+      return abpSchuelerFach;
+    });
+
     this.hasData = true;
     $('#modal-upload').modal('close');
   }

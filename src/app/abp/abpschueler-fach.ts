@@ -1,7 +1,12 @@
+import {ABPFach} from "./abpfach";
+
 export class ABPSchuelerFach {
   public ID: number;
   public Schueler_ID: number;
   public Fach_ID: number;
+
+  public Fach: ABPFach;
+
   public FachKrz: string;
   public FS_BeginnJg: string;
   public Sprachenfolge: string;

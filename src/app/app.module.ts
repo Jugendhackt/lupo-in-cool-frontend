@@ -7,13 +7,15 @@ import { DndDirective } from './dnd.directive';
 import { SubjectTableComponent } from './subject-table/subject-table.component';
 import {LupoService} from "./lupo.service";
 import {StorageService} from "./storage.service";
+import { OrderByPipe } from './order-by.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ModalUploadComponent,
     DndDirective,
-    SubjectTableComponent
+    SubjectTableComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule
