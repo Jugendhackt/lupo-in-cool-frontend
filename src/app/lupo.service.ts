@@ -5,15 +5,20 @@ import {ABPDatabase} from "./abp/abpdatabase";
 import {ABPFach} from "./abp/abpfach";
 import {ABPSchuelerFach} from "./abp/abpschueler-fach";
 import {ABPFachgruppe} from "./abp/abpfachgruppe";
+import {StorageService} from "./storage.service";
 
 declare let $: any;
 
+@Injectable()
 export class LupoService {
 
   public abpDatabase: ABPDatabase = null;
   public hasData: boolean = false;
 
-  constructor() {
+  constructor(private storageService: StorageService) {
+    if (storageService.has('abp')) {
+      this.setDatabase(storageService.get('abp'));
+    }
   }
 
   convertLupoFile(file: File): Promise<ABPDatabase> {
