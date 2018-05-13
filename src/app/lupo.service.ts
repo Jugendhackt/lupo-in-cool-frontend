@@ -97,7 +97,7 @@ export class LupoService {
     this.abpDatabase.ABP_Schueler[0].AnzS_Q2 = this.calcValues(faecher, 'Q2');
     this.abpDatabase.ABP_Schueler[0].AnzS_Q3 = this.calcValues(faecher, 'Q3');
     this.abpDatabase.ABP_Schueler[0].AnzS_Q4 = this.calcValues(faecher, 'Q4');
-    this.errors = this.errorService.validate(this.abpDatabase);
+    this.errors = this.errorService.validate(this.abpDatabase, this.errors);
   }
 
   public persistDatabase(): void {
