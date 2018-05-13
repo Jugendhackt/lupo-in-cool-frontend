@@ -1,10 +1,14 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {s} from '@angular/core/src/render3';
+
 declare let Materialize: any;
+
 @Injectable()
 export class ErrorService {
 
-  constructor() { }
+  constructor() {
+  }
+
   public validate(database, oldErrors): Array<string> {
     const errors = [];
     const courses = database.ABP_SchuelerFaecher;
@@ -111,34 +115,37 @@ export class ErrorService {
 
     console.log((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4) * 0.25);
 
-    if (((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4) * 0.25 ) <= 34 ) {
+    if (((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4) * 0.25) <= 34) {
       errors.push('Die durchschnittliche Wochenstundenzahl muss in der Qualifikationsphase mindestens 34 Stunden betragen.');
     }
 
     // 17
-    if(((database.ABP_Schueler[0].AnzS_E1 + database.ABP_Schueler[0].AnzS_E2) * 0.5 ) <= 34 ) {
-      errors.push("Die durchschnittliche Wochenstundenzahl muss in der Einführungsphase mindestens 34 Stunden betragen.");
+    if (((database.ABP_Schueler[0].AnzS_E1 + database.ABP_Schueler[0].AnzS_E2) * 0.5) <= 34) {
+      errors.push('Die durchschnittliche Wochenstundenzahl muss in der Einführungsphase mindestens 34 Stunden betragen.');
     }
 
     // 18
-    if(((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4) *0.25 ) <= 34 ) {
-      errors.push("Die durchschnittliche Wochenstundenzahl muss in der Qualifikationsphase mindestens 34 Stunden betragen.");
+    if (((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4) * 0.25) <= 34) {
+      errors.push('Die durchschnittliche Wochenstundenzahl muss in der Qualifikationsphase mindestens 34 Stunden betragen.');
     }
 
     // Fehler Nr.30
     let relevanteFächer = 0;
-    database.ABP_SchuelerFaecher.filter((fach) => fach.AbiturFach >= 1 && fach.AbiturFach <= 4 && [1, 2, 7].includes(fach.Aufgabenfeld)).map((fach) => relevanteFächer++);
+    database.ABP_SchuelerFaecher.filter((fach) => fach.AbiturFach >= 1 && fach.AbiturFach <= 4 && [1, 2, 7].includes(+fach.Aufgabenfeld)).map((fach) => relevanteFächer++);
+
+    console.log(relevanteFächer);
 
     if (relevanteFächer < 2) {
       errors.push('Unter den vier Abiturfächern müssen zwei der Fächer Deutsch, Mathematik und Fremdsprache sein.');
 
-    // Ende Fehler
-    console.log(errors);
-    const newErrors = errors.filter(val => !oldErrors.includes(val));
-    newErrors.forEach(function (newError) {
-      Materialize.toast(newError, 5000, 'toast-30length');
-    });
-    return errors;
-  }
+      // Ende Fehler
+      console.log(errors);
+      const newErrors = errors.filter(val => !oldErrors.includes(val));
+      newErrors.forEach(function (newError) {
+        Materialize.toast(newError, 5000, 'toast-30length');
+      });
+      return errors;
+    }
 
+  }
 }
