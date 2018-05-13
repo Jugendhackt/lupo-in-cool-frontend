@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {LupoService} from "../lupo.service";
-import {StorageService} from "../storage.service";
-import {ABPSchuelerFach} from "../abp/abpschueler-fach";
+import {LupoService} from '../lupo.service';
+import {StorageService} from '../storage.service';
+import {ABPSchuelerFach} from '../abp/abpschueler-fach';
 import {ErrorService} from '../error.service';
 
 declare let $: any;
@@ -24,11 +24,11 @@ export class SubjectTableComponent implements OnInit {
     $(function () {
       $('select').material_select();
     });
-    this.abiFachBesetzt = [{"place": null, "isSet": false}, {"place": null, "isSet": false}, {"place": null, "isSet": false}, {"place": null, "isSet": false}];
+    this.abiFachBesetzt = [{'place': null, 'isSet': false}, {'place': null, 'isSet': false}, {'place': null, 'isSet': false}, {'place': null, 'isSet': false}];
   }
 
   public persistDatabase() {
-    console.log("persist");
+    console.log('persist');
     this.storageService.put('adb', this.lupoService.abpDatabase);
   }
 
@@ -37,124 +37,106 @@ export class SubjectTableComponent implements OnInit {
 
     // Testen, ob Autofill angewendet werden kann
 
-    if (property == "Kursart_E1") {  //EF.1 geklickt
-      if(schuelerFach.Kursart_E2 == "") {
+    if (property == 'Kursart_E1') {  //EF.1 geklickt
+      if (schuelerFach.Kursart_E2 == '') {
         schuelerFach.Kursart_E2 = schuelerFach.Kursart_E1;
       }
-    }
-    else if (property == "Kursart_E2") {  //EF.2 geklickt
+    } else if (property == 'Kursart_E2') {  //EF.2 geklickt
 
-    }
-    else if (property == "Kursart_Q1") {  //Q1.1 geklickt
-      if ((schuelerFach.Kursart_Q2 == "" && schuelerFach.Kursart_Q3 == "" && schuelerFach.Kursart_Q4 == "") || (schuelerFach.Kursart_Q2 && schuelerFach.Kursart_Q3)) {  //Rest der Q-Phase leer
-        if (schuelerFach.Kursart_Q1 == "M") { //Auf Mündlich geändert
+    } else if (property == 'Kursart_Q1') {  //Q1.1 geklickt
+      if ((schuelerFach.Kursart_Q2 == '' && schuelerFach.Kursart_Q3 == '' && schuelerFach.Kursart_Q4 == '') || (schuelerFach.Kursart_Q2 && schuelerFach.Kursart_Q3)) {  //Rest der Q-Phase leer
+        if (schuelerFach.Kursart_Q1 == 'M') { //Auf Mündlich geändert
+          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
+        } else if (schuelerFach.Kursart_Q1 == 'S') { //Auf Schriftlich geändert
+          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q4 = 'M';
+        } else if (schuelerFach.Kursart_Q1 == 'ZK') { //Auf Zusatzkurs geändert
+          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q3 = '';
+          schuelerFach.Kursart_Q4 = '';
+        } else if (schuelerFach.Kursart_Q1 == 'LK') { //Auf Leistungskurs geändert
+          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
+          schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
+        } else if (schuelerFach.Kursart_Q1 == '') { //Auf Leistungskurs geändert
           schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
           schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
           schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
         }
-        else if (schuelerFach.Kursart_Q1 == "S") { //Auf Schriftlich geändert
-          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
-          schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
-          schuelerFach.Kursart_Q4 = "M";
-        }
-        else if (schuelerFach.Kursart_Q1 == "ZK") { //Auf Zusatzkurs geändert
-          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
-          schuelerFach.Kursart_Q3 = "";
-          schuelerFach.Kursart_Q4 = "";
-        }
-        else if (schuelerFach.Kursart_Q1 == "LK") { //Auf Leistungskurs geändert
-          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
-          schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
-          schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
-        }
-        else if (schuelerFach.Kursart_Q1 == "") { //Auf Leistungskurs geändert
-          schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
-          schuelerFach.Kursart_Q3 = schuelerFach.Kursart_Q1;
-          schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q1;
-        }
-      }
-      else if(schuelerFach.Kursart_Q2 == "" && (schuelerFach.Kursart_Q3 != "" || schuelerFach.Kursart_Q4 != "")) {
+      } else if (schuelerFach.Kursart_Q2 == '' && (schuelerFach.Kursart_Q3 != '' || schuelerFach.Kursart_Q4 != '')) {
         schuelerFach.Kursart_Q2 = schuelerFach.Kursart_Q1;
       }
-    }
-    else if (property == "Kursart_Q2") {  //Q1.2 geklickt
+    } else if (property == 'Kursart_Q2') {  //Q1.2 geklickt
 
-    }
-    else if (property == "Kursart_Q3") {  //Q2.1 geklickt
-      if(schuelerFach.Kursart_Q3 == "S"){
-        schuelerFach.Kursart_Q4 = "M";
-      }
-      else {
+    } else if (property == 'Kursart_Q3') {  //Q2.1 geklickt
+      if (schuelerFach.Kursart_Q3 == 'S') {
+        schuelerFach.Kursart_Q4 = 'M';
+      } else {
         schuelerFach.Kursart_Q4 = schuelerFach.Kursart_Q3;
       }
 
-      if(schuelerFach.Kursart_Q4 == "") {
+      if (schuelerFach.Kursart_Q4 == '') {
       }
-    }
-    else if (property == "Kursart_Q4") {  //Q2.2 geklickt
+    } else if (property == 'Kursart_Q4') {  //Q2.2 geklickt
 
-    }
-    else if (property == "AbiturFach") {
-      if(schuelerFach.AbiturFach == 1 || schuelerFach.AbiturFach == 2) {
-        schuelerFach.Kursart_Q1 = "LK";
-        schuelerFach.Kursart_Q2 = "LK";
-        schuelerFach.Kursart_Q3 = "LK";
-        schuelerFach.Kursart_Q4 = "LK";
-      }
-      else if (schuelerFach.AbiturFach == 3) {
-        schuelerFach.Kursart_Q1 = "S";
-        schuelerFach.Kursart_Q2 = "S";
-        schuelerFach.Kursart_Q3 = "S";
-        schuelerFach.Kursart_Q4 = "S";
-      }
-      else if (schuelerFach.AbiturFach == 4) {
-        schuelerFach.Kursart_Q1 = "S";
-        schuelerFach.Kursart_Q2 = "S";
-        schuelerFach.Kursart_Q3 = "S";
-        schuelerFach.Kursart_Q4 = "M";
-      }
-      else {
-        schuelerFach.Kursart_Q4 = "M";
-        if(schuelerFach.Kursart_Q1 == "LK") {
-          schuelerFach.Kursart_Q1 = "S";
-          schuelerFach.Kursart_Q2 = "S";
-          schuelerFach.Kursart_Q3 = "S";
+    } else if (property == 'AbiturFach') {
+      if (schuelerFach.AbiturFach == 1 || schuelerFach.AbiturFach == 2) {
+        schuelerFach.Kursart_Q1 = 'LK';
+        schuelerFach.Kursart_Q2 = 'LK';
+        schuelerFach.Kursart_Q3 = 'LK';
+        schuelerFach.Kursart_Q4 = 'LK';
+      } else if (schuelerFach.AbiturFach == 3) {
+        schuelerFach.Kursart_Q1 = 'S';
+        schuelerFach.Kursart_Q2 = 'S';
+        schuelerFach.Kursart_Q3 = 'S';
+        schuelerFach.Kursart_Q4 = 'S';
+      } else if (schuelerFach.AbiturFach == 4) {
+        schuelerFach.Kursart_Q1 = 'S';
+        schuelerFach.Kursart_Q2 = 'S';
+        schuelerFach.Kursart_Q3 = 'S';
+        schuelerFach.Kursart_Q4 = 'M';
+      } else {
+        schuelerFach.Kursart_Q4 = 'M';
+        if (schuelerFach.Kursart_Q1 == 'LK') {
+          schuelerFach.Kursart_Q1 = 'S';
+          schuelerFach.Kursart_Q2 = 'S';
+          schuelerFach.Kursart_Q3 = 'S';
         }
       }
 
       this.tempAbi = schuelerFach.AbiturFach;
-      for(var i = 0; i < this.lupoService.abpDatabase.ABP_SchuelerFaecher.length; i++) {
-        let currFach = this.lupoService.abpDatabase.ABP_SchuelerFaecher[i];
-        if(currFach.AbiturFach == this.tempAbi) {
+      for (let i = 0; i < this.lupoService.abpDatabase.ABP_SchuelerFaecher.length; i++) {
+        const currFach = this.lupoService.abpDatabase.ABP_SchuelerFaecher[i];
+        if (currFach.AbiturFach == this.tempAbi) {
           console.log(currFach.AbiturFach);
           currFach.AbiturFach = null;
-          if(currFach.Kursart_Q4 == "LK" || currFach.Kursart_Q4 == "S") {
-            currFach.Kursart_Q1 = "S";
-            currFach.Kursart_Q2 = "S";
-            currFach.Kursart_Q3 = "S";
-            currFach.Kursart_Q4 = "M";
+          if (currFach.Kursart_Q4 == 'LK' || currFach.Kursart_Q4 == 'S') {
+            currFach.Kursart_Q1 = 'S';
+            currFach.Kursart_Q2 = 'S';
+            currFach.Kursart_Q3 = 'S';
+            currFach.Kursart_Q4 = 'M';
           }
-        }
-        else {
+        } else {
 
         }
       }
       schuelerFach.AbiturFach = this.tempAbi;
-      if(schuelerFach.AbiturFach == 1 || schuelerFach.AbiturFach == 2) {
-        schuelerFach.Kursart_Q1 = "LK";
-        schuelerFach.Kursart_Q2 = "LK";
-        schuelerFach.Kursart_Q3 = "LK";
-        schuelerFach.Kursart_Q4 = "LK";
+      if (schuelerFach.AbiturFach == 1 || schuelerFach.AbiturFach == 2) {
+        schuelerFach.Kursart_Q1 = 'LK';
+        schuelerFach.Kursart_Q2 = 'LK';
+        schuelerFach.Kursart_Q3 = 'LK';
+        schuelerFach.Kursart_Q4 = 'LK';
+      } else if (schuelerFach.AbiturFach == 3) {
+        schuelerFach.Kursart_Q1 = 'S';
+        schuelerFach.Kursart_Q2 = 'S';
+        schuelerFach.Kursart_Q3 = 'S';
+        schuelerFach.Kursart_Q4 = 'S';
       }
-      else if (schuelerFach.AbiturFach == 3) {
-        schuelerFach.Kursart_Q1 = "S";
-        schuelerFach.Kursart_Q2 = "S";
-        schuelerFach.Kursart_Q3 = "S";
-        schuelerFach.Kursart_Q4 = "S";
-      }
-    }
-    else {
-      console.warn("Clicked on unknown Property")
+    } else {
+      console.warn('Clicked on unknown Property');
     }
 
     //Testen der Abitur-Kriterien
@@ -178,7 +160,7 @@ export class SubjectTableComponent implements OnInit {
 
 
     //schuelerFach[property] = newValue;
-    let errors = this.errorService.validate();
+    const errors = this.errorService.validate();
     this.lupoService.updateValues();
     this.persistDatabase();
   }
