@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {LupoService} from '../lupo.service';
+
+declare let $: any;
 
 @Component({
   selector: 'app-modal-fehler',
@@ -6,10 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modal-fehler.component.scss']
 })
 export class ModalFehlerComponent implements OnInit {
-
-  constructor() { }
-
+  constructor(public lupoService: LupoService) { }
   ngOnInit() {
+    $('.modal').modal();
   }
 
 }

@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import {LupoService} from './lupo.service';
 
 @Injectable()
 export class ErrorService {
 
-  constructor(private lupoService: LupoService) { }
+  constructor() { }
 
-  public validate(): Array<string> {
+  public validate(database): Array<string> {
     const errors = [];
-    const courses = this.lupoService.abpDatabase.ABP_SchuelerFaecher;
+    const courses = database.ABP_SchuelerFaecher;
     // Deutsch
     const deutschIndex: number = courses.findIndex(element => element.Fach.Bezeichnung === 'Deutsch');
     if (courses[deutschIndex].Kursart_E1 === '' || courses[deutschIndex].Kursart_E2 === '' || courses[deutschIndex].Kursart_Q1 === '' || courses[deutschIndex].Kursart_Q2 === '' || courses[deutschIndex].Kursart_Q3 === '' || courses[deutschIndex].Kursart_Q4 === '') {
