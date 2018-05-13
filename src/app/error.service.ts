@@ -21,7 +21,7 @@ export class ErrorService {
     }
 
     // Sport
-    if (database.ABP_Schueler.Sportattest !== 'J') {
+    if (database.ABP_Schueler.Sportattest != 'J') {
       const sportIndex: number = courses.findIndex(element => element.Fach.Bezeichnung === 'Sport');
       if (courses[sportIndex].Kursart_E1 === '' || courses[sportIndex].Kursart_E2 === '' || courses[sportIndex].Kursart_Q1 === '' || courses[sportIndex].Kursart_Q2 === '' || courses[sportIndex].Kursart_Q3 === '' || courses[sportIndex].Kursart_Q4 === '') {
         errors.push('Sport muss von EF.1 bis Q2.2 belegt werden.');
@@ -29,7 +29,7 @@ export class ErrorService {
     }
 
     for (let i = 0; i < courses.length; i++) {
-      if (courses[i].Fach.IstSprache === 'J') {
+      if (courses[i].Fach.IstSprache == 'J') {
         if (courses[i].Kursart_E1 != '' && courses[i].Kursart_E2 != '' && courses[i].Kursart_Q1 != '' && courses[i].Kursart_Q2 != '' && courses[i].Kursart_Q3 != '' && courses[i].Kursart_Q4 != '') {
           if (parseInt(courses[i].FS_BeginnJg) < 10) {
             // Kriterium erfüllt
@@ -39,7 +39,7 @@ export class ErrorService {
               if (parseInt(courses[i].FS_BeginnJg) < 10) {
                 break;
               }
-              if (i === courses.length - 1) {
+              if (i == courses.length - 1) {
                 errors.push('Mindestens eine Fremdsprache muss von EF.1 bis Q2.2 durchgehend belegt werden. Handelt es sich hierbei um eine neu einsetzende Fremdsprache, so muss zusätzlich mindestens eine aus der SI fortgeführte Fremdsprache von EF.1 bis EF.2 belegt werden.');
                 break;
               }
@@ -85,31 +85,22 @@ export class ErrorService {
       errors.push('Alle Abiturfächer müssen belegt werden.');
     }
 
-    let gkcount = 0;
-    for (let i = 0; i < courses.length; i++) {
-      if ((courses[i].Kursart_Q1 == 'S' || courses[i].Kursart_Q1 == 'M') && (courses[i].Kursart_Q2 == 'S' || courses[i].Kursart_Q2 == 'M') && (courses[i].Kursart_Q3 == 'S' || courses[i].Kursart_Q3 == 'M') && (courses[i].Kursart_Q4 == 'S' || courses[i].Kursart_Q4 == 'M')) {
+    var gkcount = 0;
+    for(var i = 0; i < courses.length; i++) {
+      if((courses[i].Kursart_Q1 == "S" || courses[i].Kursart_Q1 == "M") && (courses[i].Kursart_Q2 == "S" || courses[i].Kursart_Q2 == "M") && (courses[i].Kursart_Q3 == "S" || courses[i].Kursart_Q3 == "M") && (courses[i].Kursart_Q4 == "S" || courses[i].Kursart_Q4 == "M")) {
         gkcount++;
       }
     }
-    if (gkcount < 7) {
-      errors.push('In der Qualifikationsphase sind pro Halbjahr mindestens 7 Fächer in Grundkursen zu wählen.');
+    if(gkcount < 7) {
+      errors.push("In der Qualifikationsphase sind pro Halbjahr mindestens 7 Fächer in Grundkursen zu wählen.");
     }
 
-    console.log((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4) * 0.25);
+    console.log((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4)*0.25);
 
-    if (((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4) * 0.25 ) <= 34 ) {
-      errors.push('Die durchschnittliche Wochenstundenzahl muss in der Qualifikationsphase mindestens 34 Stunden betragen.');
+    if(((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4) *0.25 ) <= 34 ) {
+      errors.push("Die durchschnittliche Wochenstundenzahl muss in der Qualifikationsphase mindestens 34 Stunden betragen.");
     }
 
-    // Fehler Nr.30
-    let relevanteFächer = 0;
-    database.ABP_SchuelerFaecher.filter((fach) => fach.AbiturFach >= 1 && fach.AbiturFach <= 4 && [1, 2, 7].includes(fach.Aufgabenfeld)).map((fach) => relevanteFächer++);
-
-    if (relevanteFächer < 2) {
-      errors.push('Unter den vier Abiturfächern müssen zwei der Fächer Deutsch, Mathematik und Fremdsprache sein.');
-    }
-
-    // Ende Fehler
     console.log(errors);
     const newErrors = errors.filter(val => !oldErrors.includes(val));
     newErrors.forEach(function (newError) {
