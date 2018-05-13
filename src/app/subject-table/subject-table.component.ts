@@ -126,33 +126,55 @@ export class SubjectTableComponent implements OnInit {
       for(var i = 0; i < this.lupoService.abpDatabase.ABP_SchuelerFaecher.length; i++) {
         let currFach = this.lupoService.abpDatabase.ABP_SchuelerFaecher[i];
         if(currFach.AbiturFach == this.tempAbi) {
+          console.log(currFach.AbiturFach);
           currFach.AbiturFach = null;
+          if(currFach.Kursart_Q4 == "LK" || currFach.Kursart_Q4 == "S") {
+            currFach.Kursart_Q1 = "S";
+            currFach.Kursart_Q2 = "S";
+            currFach.Kursart_Q3 = "S";
+            currFach.Kursart_Q4 = "M";
+          }
+        }
+        else {
+
         }
       }
-
-
-      this.tempAbi = "";
+      schuelerFach.AbiturFach = this.tempAbi;
+      if(schuelerFach.AbiturFach == 1 || schuelerFach.AbiturFach == 2) {
+        schuelerFach.Kursart_Q1 = "LK";
+        schuelerFach.Kursart_Q2 = "LK";
+        schuelerFach.Kursart_Q3 = "LK";
+        schuelerFach.Kursart_Q4 = "LK";
+      }
+      else if (schuelerFach.AbiturFach == 3) {
+        schuelerFach.Kursart_Q1 = "S";
+        schuelerFach.Kursart_Q2 = "S";
+        schuelerFach.Kursart_Q3 = "S";
+        schuelerFach.Kursart_Q4 = "S";
+      }
     }
     else {
       console.warn("Clicked on unknown Property")
     }
 
     //Testen der Abitur-Kriterien
-    this.abiFachBesetzt = [{"place": null}, {"place": null}, {"place": null}, {"place": null}];
-    this.lupoService.abpDatabase.ABP_SchuelerFaecher.forEach((globalSchuelerFach) => {
-      if (globalSchuelerFach.AbiturFach >= 1 && globalSchuelerFach.AbiturFach <= 4) {
-        if (this.abiFachBesetzt[globalSchuelerFach.AbiturFach - 1].isset == false || this.abiFachBesetzt[globalSchuelerFach.AbiturFach - 1].isset ==  undefined){
-          console.log("isunset");
-          const besetzt = this.abiFachBesetzt[globalSchuelerFach.AbiturFach - 1];
-          besetzt.isset = true;
-          besetzt.place = globalSchuelerFach;
-        }
-        else {
-          console.log("isset");
-          globalSchuelerFach.AbiturFach = null;
-        }
-      }
-    })
+    // var tempAbiCh = schuelerFach.AbiturFach;
+    // this.abiFachBesetzt = [{"place": null}, {"place": null}, {"place": null}, {"place": null}];
+    // this.lupoService.abpDatabase.ABP_SchuelerFaecher.forEach((globalSchuelerFach) => {
+    //   if (globalSchuelerFach.AbiturFach >= 1 && globalSchuelerFach.AbiturFach <= 4) {
+    //     if (this.abiFachBesetzt[globalSchuelerFach.AbiturFach - 1].isset == false || this.abiFachBesetzt[globalSchuelerFach.AbiturFach - 1].isset ==  undefined){
+    //       const besetzt = this.abiFachBesetzt[globalSchuelerFach.AbiturFach - 1];
+    //       besetzt.isset = true;
+    //       besetzt.place = globalSchuelerFach;
+    //     }
+    //     else {
+    //       globalSchuelerFach.AbiturFach = null;
+    //     }
+    //   }
+    // })
+    // schuelerFach.AbiturFach = tempAbiCh;
+
+    // console.log(this.abiFachBesetzt);
 
 
     //schuelerFach[property] = newValue;
