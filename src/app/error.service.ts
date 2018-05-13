@@ -16,11 +16,8 @@ export class ErrorService {
 
     for(var i = 0; i < courses.length; i++) {
       if(courses[i].Fach.IstSprache == "J") {
-        console.log("Istsprache");
         if(courses[i].Kursart_E1 != "" && courses[i].Kursart_E2 != "" && courses[i].Kursart_Q1 != "" && courses[i].Kursart_Q2 != "" && courses[i].Kursart_Q3 != "" && courses[i].Kursart_Q4 != "") {
-          console.log("Gewählt");
           if(parseInt(courses[i].FS_BeginnJg) < 10) {
-            console.log("Pre10")
             // Kriterium erfüllt
             break;
           }
@@ -47,10 +44,8 @@ export class ErrorService {
     for(var i = 0; i < courses.length; i++) {
       if(courses[i].Aufgabenfeld == "5") {
         if(courses[i].Kursart_Q1 == "" || courses[i].Kursart_Q2 == "" || courses[i].Kursart_Q3 == "" || courses[i].Kursart_Q4 == "") {
-          console.log("Not chosen " + courses[i].FachKrz);
         }
-        else {
-          console.log("Chosen " + courses[i].FachKrz);        
+        else {     
           sozIsChosen = true;
         }
       }
