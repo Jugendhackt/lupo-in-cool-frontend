@@ -85,6 +85,23 @@ export class ErrorService {
       errors.push('Alle Abiturfächer müssen belegt werden.');
     }
 
+    var gkcount = 0;
+    for(var i = 0; i < courses.length; i++) {
+      if((courses[i].Kursart_Q1 == "S" || courses[i].Kursart_Q1 == "M") && (courses[i].Kursart_Q2 == "S" || courses[i].Kursart_Q2 == "M") && (courses[i].Kursart_Q3 == "S" || courses[i].Kursart_Q3 == "M") && (courses[i].Kursart_Q4 == "S" || courses[i].Kursart_Q4 == "M")) {
+        gkcount++;
+      }
+    }
+    if(gkcount < 7) {
+      errors.push("In der Qualifikationsphase sind pro Halbjahr mindestens 7 Fächer in Grundkursen zu wählen.");
+    }
+
+    console.log((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4)*0.25);
+
+    if(((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4) *0.25 ) <= 34 ) {
+      errors.push("Die durchschnittliche Wochenstundenzahl muss in der Qualifikationsphase mindestens 34 Stunden betragen.");
+    }
+
+    console.log(errors);
     const newErrors = errors.filter(val => !oldErrors.includes(val));
     newErrors.forEach(function (newError) {
       Materialize.toast(newError, 5000, 'toast-30length');
