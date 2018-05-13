@@ -68,6 +68,16 @@ export class ErrorService {
       errors.push("Mindestens eine Gesellschaftswissenschaft muss von Q1.1 bis Q2.2 durchgehend belegt werden.");
     }
 
+    var lkcount = 0;
+    for(var i = 0; i < courses.length; i++) {
+      if(courses[i].Kursart_Q1 == "LK" && courses[i].Kursart_Q2 == "LK" && courses[i].Kursart_Q3 == "LK" && courses[i].Kursart_Q4 == "LK") {
+        lkcount++;
+      }
+    }
+    if(lkcount != 2) {
+      errors.push("In der Qualifikationsphase müssen zwei Fächer durchgehend in Leistungskursen belegt werden.");
+    }
+
 
     console.log(errors);
     const newErrors = errors.filter(val => !oldErrors.includes(val));
