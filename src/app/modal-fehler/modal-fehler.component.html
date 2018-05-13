@@ -1,9 +1,11 @@
-<div id="modal-upload" class="modal">
+<div id="modal-fehler" class="modal bottom-sheet">
   <div class="modal-content">
     <h2 class="modal-title">Fehler</h2>
     <ul class="collection">
-      <li class="collection-item">Alvin</li>
-      <li class="collection-item">Alvin</li>
+      <li class="collection-item" *ngFor="let error of lupoService.errors">{{ error }}</li>
     </ul>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">OK</a>
   </div>
 </div>

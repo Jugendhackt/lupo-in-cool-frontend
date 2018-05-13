@@ -6,6 +6,7 @@ import {ABPFach} from './abp/abpfach';
 import {ABPSchuelerFach} from './abp/abpschueler-fach';
 import {ABPFachgruppe} from './abp/abpfachgruppe';
 import {StorageService} from './storage.service';
+import {ErrorService} from './error.service';
 
 declare let $: any;
 
@@ -14,8 +15,9 @@ export class LupoService {
 
   public abpDatabase: ABPDatabase = null;
   public hasData = false;
+  public errors: Array<string> = [];
 
-  constructor(private storageService: StorageService) {
+  constructor(private storageService: StorageService, private errorService: ErrorService) {
     if (storageService.has('adb')) {
       this.setDatabase(storageService.get('adb'));
     }
@@ -93,5 +95,6 @@ export class LupoService {
     this.abpDatabase.ABP_Schueler[0].AnzS_Q2 = this.calcValues(faecher, 'Q2');
     this.abpDatabase.ABP_Schueler[0].AnzS_Q3 = this.calcValues(faecher, 'Q3');
     this.abpDatabase.ABP_Schueler[0].AnzS_Q4 = this.calcValues(faecher, 'Q4');
+    this.errors = this.errorService.validate(this.abpDatabase);
   }
 }

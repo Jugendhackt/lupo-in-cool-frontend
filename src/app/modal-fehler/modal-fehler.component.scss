@@ -1,0 +1,12 @@
+@import "../../assets/materialize";
+.modal {
+  width: 50% !important;
+  right: 0;
+  left: auto;
+  .modal-content {
+    .modal-title {
+      @extend .thin;
+      text-align: center;
+    }
+  }
+}
