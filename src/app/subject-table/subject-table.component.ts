@@ -19,11 +19,12 @@ export class SubjectTableComponent implements OnInit {
   public abiFachBesetzt: any;
   public tempAbi;
 
+
   ngOnInit() {
     $(function () {
       $('select').material_select();
     });
-    this.abiFachBesetzt = [{'place': null, 'isSet': false}, {'place': null, 'isSet': false}, {'place': null, 'isSet': false}, {'place': null, 'isSet': false}];
+    // this.abiFachBesetzt = [{'place': null, 'isSet': false}, {'place': null, 'isSet': false}, {'place': null, 'isSet': false}, {'place': null, 'isSet': false}];
   }
 
   public persistDatabase() {
@@ -138,7 +139,6 @@ export class SubjectTableComponent implements OnInit {
     }
 
     //Testen der Abitur-Kriterien
-    // var tempAbiCh = schuelerFach.AbiturFach;
     // this.abiFachBesetzt = [{"place": null}, {"place": null}, {"place": null}, {"place": null}];
     // this.lupoService.abpDatabase.ABP_SchuelerFaecher.forEach((globalSchuelerFach) => {
     //   if (globalSchuelerFach.AbiturFach >= 1 && globalSchuelerFach.AbiturFach <= 4) {
@@ -148,11 +148,10 @@ export class SubjectTableComponent implements OnInit {
     //       besetzt.place = globalSchuelerFach;
     //     }
     //     else {
-    //       globalSchuelerFach.AbiturFach = null;
+          
     //     }
     //   }
     // })
-    // schuelerFach.AbiturFach = tempAbiCh;
 
     // console.log(this.abiFachBesetzt);
 
