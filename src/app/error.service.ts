@@ -8,19 +8,20 @@ export class ErrorService {
   public validate(database, oldErrors): Array<string> {
     const errors = [];
     const courses = database.ABP_SchuelerFaecher;
-    // Deutsch
+
+    // 1
     const deutschIndex: number = courses.findIndex(element => element.Fach.Bezeichnung === 'Deutsch');
     if (courses[deutschIndex].Kursart_E1 === '' || courses[deutschIndex].Kursart_E2 === '' || courses[deutschIndex].Kursart_Q1 === '' || courses[deutschIndex].Kursart_Q2 === '' || courses[deutschIndex].Kursart_Q3 === '' || courses[deutschIndex].Kursart_Q4 === '') {
       errors.push('Deutsch muss von EF.1 bis Q2.2 belegt werden.');
     }
 
-    // Mathe
+    // 8
     const matheIndex: number = courses.findIndex(element => element.Fach.Bezeichnung === 'Mathematik');
     if (courses[matheIndex].Kursart_E1 === '' || courses[matheIndex].Kursart_E2 === '' || courses[matheIndex].Kursart_Q1 === '' || courses[matheIndex].Kursart_Q2 === '' || courses[matheIndex].Kursart_Q3 === '' || courses[matheIndex].Kursart_Q4 === '') {
       errors.push('Mathematik muss von EF.1 bis Q2.2 belegt werden.');
     }
 
-    // Sport
+    // 10
     if (database.ABP_Schueler.Sportattest != 'J') {
       const sportIndex: number = courses.findIndex(element => element.Fach.Bezeichnung === 'Sport');
       if (courses[sportIndex].Kursart_E1 === '' || courses[sportIndex].Kursart_E2 === '' || courses[sportIndex].Kursart_Q1 === '' || courses[sportIndex].Kursart_Q2 === '' || courses[sportIndex].Kursart_Q3 === '' || courses[sportIndex].Kursart_Q4 === '') {
@@ -28,6 +29,7 @@ export class ErrorService {
       }
     }
 
+    // 2
     for (let i = 0; i < courses.length; i++) {
       if (courses[i].Fach.IstSprache == 'J') {
         if (courses[i].Kursart_E1 != '' && courses[i].Kursart_E2 != '' && courses[i].Kursart_Q1 != '' && courses[i].Kursart_Q2 != '' && courses[i].Kursart_Q3 != '' && courses[i].Kursart_Q4 != '') {
@@ -52,6 +54,7 @@ export class ErrorService {
       }
     }
 
+    // 4
     let sozIsChosen = false;
     for (let i = 0; i < courses.length; i++) {
       if (courses[i].Aufgabenfeld == '5') {
@@ -65,6 +68,7 @@ export class ErrorService {
       errors.push('Mindestens eine Gesellschaftswissenschaft muss von Q1.1 bis Q2.2 durchgehend belegt werden.');
     }
 
+    // 12
     let lkcount = 0;
     for (let i = 0; i < courses.length; i++) {
       if (courses[i].Kursart_Q1 == 'LK' && courses[i].Kursart_Q2 == 'LK' && courses[i].Kursart_Q3 == 'LK' && courses[i].Kursart_Q4 == 'LK') {
@@ -74,17 +78,26 @@ export class ErrorService {
     if (lkcount != 2) {
       errors.push('In der Qualifikationsphase müssen zwei Fächer durchgehend in Leistungskursen belegt werden.');
     }
-    // 28
+
+    // 28 & 29
     let abiCount = 0;
+    let alreadyWarned29 = false;
     courses.forEach((courseEl) => {
       if (courseEl.AbiturFach >= 1 && courseEl.AbiturFach <= 4) {
         abiCount++;
+        if(courseEl.Kursart_Q1 != "" && courseEl.Kursart_Q2 != "" && courseEl.Kursart_Q3 != "" && courseEl.Kursart_Q4 != "") {
+          if(!alreadyWarned29) {
+            errors.push('Alle Abiturfächer müssen durchgehend belegt werden.');
+            alreadyWarned29 = true;
+          }
+        }
       }
     });
     if (abiCount !== 4) {
       errors.push('Alle Abiturfächer müssen belegt werden.');
     }
 
+    // 13
     var gkcount = 0;
     for(var i = 0; i < courses.length; i++) {
       if((courses[i].Kursart_Q1 == "S" || courses[i].Kursart_Q1 == "M") && (courses[i].Kursart_Q2 == "S" || courses[i].Kursart_Q2 == "M") && (courses[i].Kursart_Q3 == "S" || courses[i].Kursart_Q3 == "M") && (courses[i].Kursart_Q4 == "S" || courses[i].Kursart_Q4 == "M")) {
@@ -95,12 +108,12 @@ export class ErrorService {
       errors.push("In der Qualifikationsphase sind pro Halbjahr mindestens 7 Fächer in Grundkursen zu wählen.");
     }
 
-    //E Stunden
+    // 17
     if(((database.ABP_Schueler[0].AnzS_E1 + database.ABP_Schueler[0].AnzS_E2) * 0.5 ) <= 34 ) {
       errors.push("Die durchschnittliche Wochenstundenzahl muss in der Einführungsphase mindestens 34 Stunden betragen.");
     }
 
-    //Q Stunden
+    // 18
     if(((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4) *0.25 ) <= 34 ) {
       errors.push("Die durchschnittliche Wochenstundenzahl muss in der Qualifikationsphase mindestens 34 Stunden betragen.");
     }
