@@ -43,11 +43,20 @@ export class ErrorService {
       }
     }
 
+    var sozIsChosen = false;
     for(var i = 0; i < courses.length; i++) {
-      if(courses[i].Aufgabenfeld == "5" && (courses[i].Kursart_Q1 == "" || courses[i].Kursart_Q2 == "" || courses[i].Kursart_Q3 == "" || courses[i].Kursart_Q4 == "")) {
-        errors.push("Mindestens eine Gesellschaftswissenschaft muss von Q1.1 bis Q2.2 durchgehend belegt werden.");
-        break;
+      if(courses[i].Aufgabenfeld == "5") {
+        if(courses[i].Kursart_Q1 == "" || courses[i].Kursart_Q2 == "" || courses[i].Kursart_Q3 == "" || courses[i].Kursart_Q4 == "") {
+          console.log("Not chosen " + courses[i].FachKrz);
+        }
+        else {
+          console.log("Chosen " + courses[i].FachKrz);        
+          sozIsChosen = true;
+        }
       }
+    }
+    if(!sozIsChosen) {
+      errors.push("Mindestens eine Gesellschaftswissenschaft muss von Q1.1 bis Q2.2 durchgehend belegt werden.");
     }
 
 
