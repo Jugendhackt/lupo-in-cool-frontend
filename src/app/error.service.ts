@@ -43,6 +43,15 @@ export class ErrorService {
         }
       }
     }
+
+    for(var i = 0; i < courses.length; i++) {
+      if(courses[i].Aufgabenfeld == "5" && (courses[i].Kursart_Q1 == "" || courses[i].Kursart_Q2 == "" || courses[i].Kursart_Q3 == "" || courses[i].Kursart_Q4 == "")) {
+        errors.push("Mindestens eine Gesellschaftswissenschaft muss von Q1.1 bis Q2.2 durchgehend belegt werden.");
+        break;
+      }
+    }
+
+
     console.log(errors);
     return errors;
   }
