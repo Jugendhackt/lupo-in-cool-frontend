@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {LupoService} from '../lupo.service';
 
 declare let $: any;
+declare let Materialize: any;
 
 @Component({
   selector: 'app-modal-fehler',
@@ -11,7 +12,11 @@ declare let $: any;
 export class ModalFehlerComponent implements OnInit {
   constructor(public lupoService: LupoService) { }
   ngOnInit() {
-    $('.modal').modal();
+    $('.modal').modal({
+      ready: () => {
+        Materialize.Toast.removeAll();
+      }
+    });
   }
 
 }
