@@ -18,53 +18,53 @@
       <tr *ngFor="let schuelerFach of lupoService.abpDatabase.ABP_SchuelerFaecher | orderBy: 'Fach.Sortierung'">
         <td class="thick-border-right">{{schuelerFach.Fach.Bezeichnung}}</td>
         <td>
-          <select [(ngModel)]="schuelerFach.Kursart_E1" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E1', $event)" name="kursart-e1-{{schuelerFach.ID}}">
+          <select [(ngModel)]="schuelerFach.Kursart_E1" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E1', $event)" [disabled]="schuelerFach.Fach.E1 !== 'J'" name="kursart-e1-{{schuelerFach.ID}}">
             <option value="" selected></option>
             <option value="M">M</option>
             <option value="S">S</option>
           </select>
         </td>
         <td class="thick-border-right">
-          <select [(ngModel)]="schuelerFach.Kursart_E2" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E2', $event)" name="kursart-e2-{{schuelerFach.ID}}">
+          <select [(ngModel)]="schuelerFach.Kursart_E2" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_E2', $event)" [disabled]="schuelerFach.Fach.E2 !== 'J'" name="kursart-e2-{{schuelerFach.ID}}">
             <option value="" selected></option>
             <option value="M">M</option>
             <option value="S">S</option>
           </select>
         </td>
         <td>
-          <select [(ngModel)]="schuelerFach.Kursart_Q1" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_Q1', $event)" name="kursart-q1-{{schuelerFach.ID}}">
+          <select [(ngModel)]="schuelerFach.Kursart_Q1" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_Q1', $event)" [disabled]="schuelerFach.Fach.Q1 !== 'J'"name="kursart-q1-{{schuelerFach.ID}}">
             <option value="" selected></option>
             <option value="M">M</option>
             <option value="S">S</option>
-            <option value="LK">LK</option>
+            <option value="LK" *ngIf="schuelerFach.Fach.LK_Moegl === 'J'">LK</option>
           </select>
         </td>
         <td>
-          <select [(ngModel)]="schuelerFach.Kursart_Q2" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_Q2', $event)" name="kursart-q2-{{schuelerFach.ID}}">
+          <select [(ngModel)]="schuelerFach.Kursart_Q2" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_Q2', $event)" [disabled]="schuelerFach.Fach.Q2 !== 'J'" name="kursart-q2-{{schuelerFach.ID}}">
             <option value="" selected></option>
             <option value="M">M</option>
             <option value="S">S</option>
-            <option value="LK">LK</option>
+            <option value="LK" *ngIf="schuelerFach.Fach.LK_Moegl === 'J'">LK</option>
           </select>
         </td>
         <td>
-          <select [(ngModel)]="schuelerFach.Kursart_Q3" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_Q3', $event)" name="kursart-q3-{{schuelerFach.ID}}">
+          <select [(ngModel)]="schuelerFach.Kursart_Q3" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_Q3', $event)" [disabled]="schuelerFach.Fach.Q3 !== 'J'" name="kursart-q3-{{schuelerFach.ID}}">
             <option value="" selected></option>
             <option value="M">M</option>
             <option value="S">S</option>
-            <option value="LK">LK</option>
+            <option value="LK" *ngIf="schuelerFach.Fach.LK_Moegl === 'J'">LK</option>
           </select>
         </td>
         <td class="thick-border-right">
-          <select [(ngModel)]="schuelerFach.Kursart_Q4" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_Q4', $event)" name="kursart-q4-{{schuelerFach.ID}}">
+          <select [(ngModel)]="schuelerFach.Kursart_Q4" class="browser-default" (change)="onChange(schuelerFach, 'Kursart_Q4', $event)" [disabled]="schuelerFach.Fach.Q4 !== 'J'" name="kursart-q4-{{schuelerFach.ID}}">
             <option value="" selected></option>
             <option value="M">M</option>
             <option value="S">S</option>
-            <option value="LK">LK</option>
+            <option value="LK" *ngIf="schuelerFach.Fach.LK_Moegl === 'J'">LK</option>
           </select>
         </td>
         <td>
-          <select [(ngModel)]="schuelerFach.AbiturFach" class="browser-default" (change)="onChange(schuelerFach, 'AbiturFach', $event)" name="abifach-{{schuelerFach.ID}}">
+          <select [(ngModel)]="schuelerFach.AbiturFach" class="browser-default" (change)="onChange(schuelerFach, 'AbiturFach', $event)"[disabled]="schuelerFach.Fach.Abi_Moegl !== 'J'" name="abifach-{{schuelerFach.ID}}">
             <option value="" selected></option>
             <option value="1" *ngIf="!abiFachBesetzt[0].isSet">1</option>
             <option value="2">2</option>

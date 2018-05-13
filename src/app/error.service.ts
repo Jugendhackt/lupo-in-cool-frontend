@@ -14,13 +14,16 @@ export class ErrorService {
       errors.push('Deutsch muss von EF.1 bis Q2.2 belegt werden.');
     }
 
+    // Mathe
+    const matheIndex: number = courses.findIndex(element => element.Fach.Bezeichnung === 'Mathematik');
+    if (courses[matheIndex].Kursart_E1 === '' || courses[matheIndex].Kursart_E2 === '' || courses[matheIndex].Kursart_Q1 === '' || courses[matheIndex].Kursart_Q2 === '' || courses[matheIndex].Kursart_Q3 === '' || courses[matheIndex].Kursart_Q4 === '') {
+      errors.push('Mathematik muss von EF.1 bis Q2.2 belegt werden.');
+    }
+
     for(var i = 0; i < courses.length; i++) {
       if(courses[i].Fach.IstSprache == "J") {
-        console.log("Istsprache");
         if(courses[i].Kursart_E1 != "" && courses[i].Kursart_E2 != "" && courses[i].Kursart_Q1 != "" && courses[i].Kursart_Q2 != "" && courses[i].Kursart_Q3 != "" && courses[i].Kursart_Q4 != "") {
-          console.log("Gewählt");
           if(parseInt(courses[i].FS_BeginnJg) < 10) {
-            console.log("Pre10")
             // Kriterium erfüllt
             break;
           }
@@ -42,6 +45,22 @@ export class ErrorService {
         }
       }
     }
+
+    var sozIsChosen = false;
+    for(var i = 0; i < courses.length; i++) {
+      if(courses[i].Aufgabenfeld == "5") {
+        if(courses[i].Kursart_Q1 == "" || courses[i].Kursart_Q2 == "" || courses[i].Kursart_Q3 == "" || courses[i].Kursart_Q4 == "") {
+        }
+        else {     
+          sozIsChosen = true;
+        }
+      }
+    }
+    if(!sozIsChosen) {
+      errors.push("Mindestens eine Gesellschaftswissenschaft muss von Q1.1 bis Q2.2 durchgehend belegt werden.");
+    }
+
+
     console.log(errors);
     const newErrors = errors.filter(val => !oldErrors.includes(val));
     newErrors.forEach(function (newError) {
