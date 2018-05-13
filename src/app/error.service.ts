@@ -95,8 +95,12 @@ export class ErrorService {
       errors.push("In der Qualifikationsphase sind pro Halbjahr mindestens 7 Fächer in Grundkursen zu wählen.");
     }
 
-    console.log((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4)*0.25);
+    //E Stunden
+    if(((database.ABP_Schueler[0].AnzS_E1 + database.ABP_Schueler[0].AnzS_E2) * 0.5 ) <= 34 ) {
+      errors.push("Die durchschnittliche Wochenstundenzahl muss in der Einführungsphase mindestens 34 Stunden betragen.");
+    }
 
+    //Q Stunden
     if(((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4) *0.25 ) <= 34 ) {
       errors.push("Die durchschnittliche Wochenstundenzahl muss in der Qualifikationsphase mindestens 34 Stunden betragen.");
     }
