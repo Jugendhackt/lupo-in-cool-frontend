@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-
+import {s} from '@angular/core/src/render3';
+declare let Materialize: any;
 @Injectable()
 export class ErrorService {
 
   constructor() { }
-
-  public validate(database): Array<string> {
+  public validate(database, oldErrors): Array<string> {
     const errors = [];
     const courses = database.ABP_SchuelerFaecher;
     // Deutsch
@@ -37,12 +37,16 @@ export class ErrorService {
           }
         }
         else {
-          errors.push("Mindestens eine Fremdsprache muss von EF.1 bis Q2.2 durchgehend belegt werden. Handelt es sich hierbei um eine neu einsetzende Fremdsprache, so muss zusätzlich mindestens eine aus der SI fortgeführte Fremdsprache von EF.1 bis EF.2 belegt werden.");          
+          errors.push("Mindestens eine Fremdsprache muss von EF.1 bis Q2.2 durchgehend belegt werden. Handelt es sich hierbei um eine neu einsetzende Fremdsprache, so muss zusätzlich mindestens eine aus der SI fortgeführte Fremdsprache von EF.1 bis EF.2 belegt werden.");
           break;
         }
       }
     }
     console.log(errors);
+    const newErrors = errors.filter(val => !oldErrors.includes(val));
+    newErrors.forEach(function (newError) {
+      Materialize.toast(newError, 5000, 'toast-30length');
+    });
     return errors;
   }
 
