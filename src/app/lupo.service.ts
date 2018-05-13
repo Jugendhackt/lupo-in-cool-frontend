@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {ChangeDetectorRef, Injectable} from '@angular/core';
 import axios from 'axios';
 import {environment} from '../environments/environment';
 import {ABPDatabase} from './abp/abpdatabase';
@@ -70,6 +70,7 @@ export class LupoService {
     this.abpDatabase = null;
     $('#modal-upload').modal('open');
   }
+
   private calcValues(faecher, stufe): number {
     let anz = 0;
     faecher.forEach((fach) => {
@@ -87,6 +88,7 @@ export class LupoService {
     });
     return anz;
   }
+
   public updateValues(): void {
     const faecher = this.abpDatabase.ABP_SchuelerFaecher;
     this.abpDatabase.ABP_Schueler[0].AnzS_E1 = this.calcValues(faecher, 'E1');
@@ -96,5 +98,10 @@ export class LupoService {
     this.abpDatabase.ABP_Schueler[0].AnzS_Q3 = this.calcValues(faecher, 'Q3');
     this.abpDatabase.ABP_Schueler[0].AnzS_Q4 = this.calcValues(faecher, 'Q4');
     this.errors = this.errorService.validate(this.abpDatabase);
+  }
+
+  public persistDatabase(): void {
+    console.log("persist");
+    this.storageService.put('adb', this.abpDatabase);
   }
 }

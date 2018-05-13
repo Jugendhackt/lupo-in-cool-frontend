@@ -1,8 +1,8 @@
-<main *ngIf="lupoService.hasData">
-  <app-subject-table></app-subject-table>
+<main>
+  <app-subject-table *ngIf="this.lupoService.hasData"></app-subject-table>
 </main>
-<footer *ngIf="lupoService.hasData">
-  <app-footer></app-footer>
+<footer>
+  <app-footer *ngIf="this.lupoService.hasData"></app-footer>
 </footer>
 <div id="modal-wrapper">
   <app-modal-upload></app-modal-upload>

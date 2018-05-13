@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {LupoService} from "./lupo.service";
 declare let $: any;
 
@@ -7,6 +7,18 @@ declare let $: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  constructor(private lupoService: LupoService) {}
+export class AppComponent implements OnInit, OnDestroy {
+  constructor(private lupoService: LupoService, private cdRef: ChangeDetectorRef) {}
+
+  private timer: number;
+
+  ngOnDestroy(): void {
+    this.timer = window.setInterval(() => {
+      this.cdRef.markForCheck();
+    }, 100);
+  }
+
+  ngOnInit(): void {
+    window.clearInterval(this.timer);
+  }
 }
