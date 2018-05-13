@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChanges} from '@a
 import {LupoService} from "../lupo.service";
 import {StorageService} from "../storage.service";
 import {ABPSchuelerFach} from "../abp/abpschueler-fach";
+import {ErrorService} from '../error.service';
 
 declare let $: any;
 
@@ -12,7 +13,7 @@ declare let $: any;
 })
 export class SubjectTableComponent implements OnInit {
 
-  constructor(private lupoService: LupoService, private storageService: StorageService, private cdRef: ChangeDetectorRef) {
+  constructor(private lupoService: LupoService, private storageService: StorageService, private cdRef: ChangeDetectorRef, private errorService: ErrorService) {
   }
 
   subjectCount = 1;
@@ -128,7 +129,7 @@ export class SubjectTableComponent implements OnInit {
           currFach.AbiturFach = null;
         }
       }
-      
+
 
       this.tempAbi = "";
     }
@@ -155,6 +156,7 @@ export class SubjectTableComponent implements OnInit {
 
 
     //schuelerFach[property] = newValue;
+    let errors = this.errorService.validate();
     this.lupoService.updateValues();
     this.persistDatabase();
   }

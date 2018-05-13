@@ -12,6 +12,7 @@ import {StorageService} from './storage.service';
 import {OrderModule} from 'ngx-order-pipe';
 import {FormsModule} from '@angular/forms';
 import { FooterStundenColorComponent } from './footer-stunden-color/footer-stunden-color.component';
+import {ErrorService} from './error.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { FooterStundenColorComponent } from './footer-stunden-color/footer-stund
     OrderModule,
     FormsModule
   ],
-  providers: [LupoService, StorageService],
+  providers: [LupoService, StorageService, ErrorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
