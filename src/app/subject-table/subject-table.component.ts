@@ -28,8 +28,7 @@ export class SubjectTableComponent implements OnInit {
   }
 
   public persistDatabase() {
-    console.log("persist");
-    this.storageService.put('adb', this.lupoService.abpDatabase);
+    this.lupoService.persistDatabase();
   }
 
   public onChange(schuelerFach: ABPSchuelerFach, property: string, newValue: string) {
