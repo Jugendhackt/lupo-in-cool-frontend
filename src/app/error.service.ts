@@ -20,6 +20,14 @@ export class ErrorService {
       errors.push('Mathematik muss von EF.1 bis Q2.2 belegt werden.');
     }
 
+    // Sport
+    if(database.ABP_Schueler.Sportattest != "J"){
+      const sportIndex: number = courses.findIndex(element => element.Fach.Bezeichnung === 'Sport');
+      if (courses[sportIndex].Kursart_E1 === '' || courses[sportIndex].Kursart_E2 === '' || courses[sportIndex].Kursart_Q1 === '' || courses[sportIndex].Kursart_Q2 === '' || courses[sportIndex].Kursart_Q3 === '' || courses[sportIndex].Kursart_Q4 === '') {
+        errors.push('Sport muss von EF.1 bis Q2.2 belegt werden.');
+      }
+    }
+
     for(var i = 0; i < courses.length; i++) {
       if(courses[i].Fach.IstSprache == "J") {
         if(courses[i].Kursart_E1 != "" && courses[i].Kursart_E2 != "" && courses[i].Kursart_Q1 != "" && courses[i].Kursart_Q2 != "" && courses[i].Kursart_Q3 != "" && courses[i].Kursart_Q4 != "") {
