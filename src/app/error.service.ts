@@ -29,8 +29,8 @@ export class ErrorService {
     }
 
     for (let i = 0; i < courses.length; i++) {
-      if (courses[i].Fach.IstSprache == 'J') {
-        if (courses[i].Kursart_E1 != '' && courses[i].Kursart_E2 != '' && courses[i].Kursart_Q1 != '' && courses[i].Kursart_Q2 != '' && courses[i].Kursart_Q3 != '' && courses[i].Kursart_Q4 != '') {
+      if (courses[i].Fach.IstSprache === 'J') {
+        if (courses[i].Kursart_E1 !== '' && courses[i].Kursart_E2 !== '' && courses[i].Kursart_Q1 !== '' && courses[i].Kursart_Q2 !== '' && courses[i].Kursart_Q3 !== '' && courses[i].Kursart_Q4 !== '') {
           if (parseInt(courses[i].FS_BeginnJg) < 10) {
             // Kriterium erfüllt
             break;
@@ -39,7 +39,7 @@ export class ErrorService {
               if (parseInt(courses[i].FS_BeginnJg) < 10) {
                 break;
               }
-              if (i == courses.length - 1) {
+              if (i === courses.length - 1) {
                 errors.push('Mindestens eine Fremdsprache muss von EF.1 bis Q2.2 durchgehend belegt werden. Handelt es sich hierbei um eine neu einsetzende Fremdsprache, so muss zusätzlich mindestens eine aus der SI fortgeführte Fremdsprache von EF.1 bis EF.2 belegt werden.');
                 break;
               }
@@ -54,8 +54,8 @@ export class ErrorService {
 
     let sozIsChosen = false;
     for (let i = 0; i < courses.length; i++) {
-      if (courses[i].Aufgabenfeld == '5') {
-        if (courses[i].Kursart_Q1 == '' || courses[i].Kursart_Q2 == '' || courses[i].Kursart_Q3 == '' || courses[i].Kursart_Q4 == '') {
+      if (courses[i].Aufgabenfeld === '5') {
+        if (courses[i].Kursart_Q1 === '' || courses[i].Kursart_Q2 === '' || courses[i].Kursart_Q3 === '' || courses[i].Kursart_Q4 === '') {
         } else {
           sozIsChosen = true;
         }
@@ -67,11 +67,11 @@ export class ErrorService {
 
     let lkcount = 0;
     for (let i = 0; i < courses.length; i++) {
-      if (courses[i].Kursart_Q1 == 'LK' && courses[i].Kursart_Q2 == 'LK' && courses[i].Kursart_Q3 == 'LK' && courses[i].Kursart_Q4 == 'LK') {
+      if (courses[i].Kursart_Q1 === 'LK' && courses[i].Kursart_Q2 === 'LK' && courses[i].Kursart_Q3 === 'LK' && courses[i].Kursart_Q4 === 'LK') {
         lkcount++;
       }
     }
-    if (lkcount != 2) {
+    if (lkcount !== 2) {
       errors.push('In der Qualifikationsphase müssen zwei Fächer durchgehend in Leistungskursen belegt werden.');
     }
     // 28
@@ -85,20 +85,20 @@ export class ErrorService {
       errors.push('Alle Abiturfächer müssen belegt werden.');
     }
 
-    var gkcount = 0;
-    for(var i = 0; i < courses.length; i++) {
-      if((courses[i].Kursart_Q1 == "S" || courses[i].Kursart_Q1 == "M") && (courses[i].Kursart_Q2 == "S" || courses[i].Kursart_Q2 == "M") && (courses[i].Kursart_Q3 == "S" || courses[i].Kursart_Q3 == "M") && (courses[i].Kursart_Q4 == "S" || courses[i].Kursart_Q4 == "M")) {
+    let gkcount = 0;
+    for (let i = 0; i < courses.length; i++) {
+      if ((courses[i].Kursart_Q1 === 'S' || courses[i].Kursart_Q1 === 'M') && (courses[i].Kursart_Q2 === 'S' || courses[i].Kursart_Q2 === 'M') && (courses[i].Kursart_Q3 === 'S' || courses[i].Kursart_Q3 === 'M') && (courses[i].Kursart_Q4 === 'S' || courses[i].Kursart_Q4 === 'M')) {
         gkcount++;
       }
     }
-    if(gkcount < 7) {
-      errors.push("In der Qualifikationsphase sind pro Halbjahr mindestens 7 Fächer in Grundkursen zu wählen.");
+    if (gkcount < 7) {
+      errors.push('In der Qualifikationsphase sind pro Halbjahr mindestens 7 Fächer in Grundkursen zu wählen.');
     }
 
-    console.log((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4)*0.25);
+    console.log((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4) * 0.25);
 
-    if(((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4) *0.25 ) <= 34 ) {
-      errors.push("Die durchschnittliche Wochenstundenzahl muss in der Qualifikationsphase mindestens 34 Stunden betragen.");
+    if (((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4) * 0.25 ) <= 34 ) {
+      errors.push('Die durchschnittliche Wochenstundenzahl muss in der Qualifikationsphase mindestens 34 Stunden betragen.');
     }
 
     console.log(errors);

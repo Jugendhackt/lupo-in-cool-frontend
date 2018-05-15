@@ -12,6 +12,12 @@
             "element",
             "app",
             "kebab-case"
+        ],
+      "max-line-length": [
+            false
+        ],
+      "radix": [
+            false
         ]
     }
 }
