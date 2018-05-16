@@ -55,11 +55,22 @@ export class ErrorService {
     }
 
     // 5
-    const geschichteIndex: number = courses.findIndex(element => element.Fach.Bezeichnung === 'Geschichte');
-    if ((courses[geschichteIndex].Kursart_E1 === '' || courses[geschichteIndex].Kursart_E2 === '' || courses[geschichteIndex].Kursart_Q1 === '' || courses[geschichteIndex].Kursart_Q2 === '') && 
-      (!(courses[geschichteIndex].Kursart_Q3 === 'ZK' && courses[geschichteIndex].Kursart_Q4 === 'ZK')) &&
-      (!(courses[geschichteIndex].Kursart_Q1 === 'ZK' && courses[geschichteIndex].Kursart_Q2 === 'ZK'))
-    ) {
+    var geIsChosen = false;
+    for (let i = 0; i < courses.length; i++) {
+      console.log(courses[i].FachKrz.includes("GE"));
+      if(courses[i].FachKrz.includes("GE")) {
+        console.log()
+        if ((courses[i].Kursart_E1 === '' || courses[i].Kursart_E2 === '' || courses[i].Kursart_Q1 === '' || courses[i].Kursart_Q2 === '') && 
+          (!(courses[i].Kursart_Q3 === 'ZK' && courses[i].Kursart_Q4 === 'ZK')) &&
+          (!(courses[i].Kursart_Q1 === 'ZK' && courses[i].Kursart_Q2 === 'ZK'))
+        ) {
+        }
+        else {
+          geIsChosen = true;
+        }
+      }
+    }
+    if(!geIsChosen){
       errors.push('Geschichte muss von EF.1 bis wenigstens Q1.2 oder als Zusatzkurs (in der Regel von Q2.1 bis Q2.2) belegt werden.');
     }
 
