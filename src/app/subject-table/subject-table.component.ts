@@ -24,6 +24,7 @@ export class SubjectTableComponent implements OnInit {
     $(function () {
       $('select').material_select();
     });
+    document.title = this.lupoService.abpDatabase.ABP_Schuldaten[0].Bezeichnung1 + " - Lupo in cool"
     // this.abiFachBesetzt = [{'place': null, 'isSet': false}, {'place': null, 'isSet': false}, {'place': null, 'isSet': false}, {'place': null, 'isSet': false}];
   }
 
