@@ -57,9 +57,7 @@ export class ErrorService {
     // 5
     var geIsChosen = false;
     for (let i = 0; i < courses.length; i++) {
-      console.log(courses[i].FachKrz.includes("GE"));
       if(courses[i].FachKrz.includes("GE")) {
-        console.log()
         if ((courses[i].Kursart_E1 === '' || courses[i].Kursart_E2 === '' || courses[i].Kursart_Q1 === '' || courses[i].Kursart_Q2 === '') && 
           (!(courses[i].Kursart_Q3 === 'ZK' && courses[i].Kursart_Q4 === 'ZK')) &&
           (!(courses[i].Kursart_Q1 === 'ZK' && courses[i].Kursart_Q2 === 'ZK'))
@@ -72,6 +70,15 @@ export class ErrorService {
     }
     if(!geIsChosen){
       errors.push('Geschichte muss von EF.1 bis wenigstens Q1.2 oder als Zusatzkurs (in der Regel von Q2.1 bis Q2.2) belegt werden.');
+    }
+
+    // 6
+    const sowiIndex: number = courses.findIndex(element => element.Fach.Bezeichnung === 'Sozialwissenschaften');
+    if ((courses[sowiIndex].Kursart_E1 === '' || courses[sowiIndex].Kursart_E2 === '' || courses[sowiIndex].Kursart_Q1 === '' || courses[sowiIndex].Kursart_Q2 === '') && 
+      (!(courses[sowiIndex].Kursart_Q3 === 'ZK' && courses[sowiIndex].Kursart_Q4 === 'ZK')) &&
+      (!(courses[sowiIndex].Kursart_Q1 === 'ZK' && courses[sowiIndex].Kursart_Q2 === 'ZK'))
+    ) {
+      errors.push('Sozialwissenschaften muss von EF.1 bis wenigstens Q1.2 oder als Zusatzkurs (in der Regel von Q2.1 bis Q2.2) belegt werden.');
     }
 
     // 8
@@ -122,9 +129,38 @@ export class ErrorService {
       errors.push('In der Qualifikationsphase sind pro Halbjahr mindestens 7 Fächer in Grundkursen zu wählen.');
     }
 
+    // 15
+    if ((parseInt(database.ABP_Schueler[0].AnzK_Q1) + parseInt(database.ABP_Schueler[0].AnzK_Q2) + parseInt(database.ABP_Schueler[0].AnzK_Q3) + parseInt(database.ABP_Schueler[0].AnzK_Q4)) < 38) {
+      errors.push('In der Qualifikationsphase müssen mindestens 38 anrechenbare Kurse belegt werden.');
+    }
+
+    // 16
+    if ((((database.ABP_Schueler[0].AnzS_E1 + database.ABP_Schueler[0].AnzS_E2) / 2) + ((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2) / 2) + ((database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4) / 2) < 102) ) {
+      errors.push('Der Pflichtunterricht darf 102 Stunden nicht unterschreiten.');
+    }
+
     // 18
     if (((database.ABP_Schueler[0].AnzS_Q1 + database.ABP_Schueler[0].AnzS_Q2 + database.ABP_Schueler[0].AnzS_Q3 + database.ABP_Schueler[0].AnzS_Q4) * 0.25 ) < 34 ) {
       errors.push('Die durchschnittliche Wochenstundenzahl muss in der Qualifikationsphase mindestens 34 Stunden betragen.');
+    }
+
+    // 19
+    var e1count = 0;
+    var e2count = 0;
+    for (var i = 0; i < courses.length; i++) {
+      console.log(courses[i].Fachgruppe)
+      if(!courses[i].Fachgruppe.includes("X")) {
+        if(courses[i].Kursart_E1 != "") {
+          e1count++;
+        }
+        if(courses[i].Kursart_E2 != "") {
+          e2count++;
+        }
+      }
+    }
+    console.log(e1count);
+    if (e1count < 10 || e2count < 10) {
+      errors.push('In der Einführungsphase müssen in jedem Halbjahr mindestens 10 Fächer belegt werden. Vertiefungskurse werden bei der Zählung nicht berücksichtigt.');
     }
 
     // 28

@@ -69,6 +69,7 @@ export class LupoService {
     this.hasData = false;
     this.abpDatabase = null;
     $('#modal-upload').modal('open');
+    document.title = "Lupo in cool";
   }
 
   private calcValues(faecher, stufe): number {
